@@ -1,5 +1,3 @@
-console.log("NODE_ENV:", process.env.NODE_ENV);
-
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -18,6 +16,8 @@ const envFile =
 dotenv.config({
   path: path.resolve(process.cwd(), envFile),
 });
+
+console.log("NODE_ENV:", process.env.NODE_ENV);
 
 try {
   connectDB();
