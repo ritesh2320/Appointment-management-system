@@ -33,24 +33,20 @@ const verifyPaymentSchema = Joi.object({
     "any.required": "Payment method is required",
   }),
   // For Razorpay signature verification
-  razorpay_order_id: Joi.string().when("paymentMethod", {
-    is: "razorpay",
-    then: Joi.required(),
-    otherwise: Joi.optional(),
+  razorpay_order_id: Joi.string().required().messages({
+    "any.required": "Razorpay order ID is required",
   }),
-  razorpay_payment_id: Joi.string().when("paymentMethod", {
-    is: "razorpay",
-    then: Joi.required(),
-    otherwise: Joi.optional(),
+  razorpay_payment_id: Joi.string().required().messages({
+    "any.required": "Razorpay payment ID is required",
   }),
-  razorpay_signature: Joi.string().when("paymentMethod", {
-    is: "razorpay",
-    then: Joi.required(),
-    otherwise: Joi.optional(),
+  razorpay_signature: Joi.string().required().messages({
+    "any.required": "Razorpay signature is required",
   }),
 });
 
+// ========================================
 // CREATE PAYMENT INTENT (RAZORPAY)
+// ========================================
 
 exports.createPaymentIntent = async (req, res) => {
   try {
@@ -73,7 +69,7 @@ exports.createPaymentIntent = async (req, res) => {
       });
     }
 
-    const { slotId, paymentMethod } = value;
+    const { slotId } = value;
 
     // Verify slot exists and is available
     const slot = await Slot.findById(slotId);
@@ -99,14 +95,11 @@ exports.createPaymentIntent = async (req, res) => {
       });
     }
 
-    // Calculate amount (you can customize this based on your pricing logic)
-    const amount = slot.price || 1000; // Default ₹10 or $10 if no price set
-    const currency = paymentMethod === "razorpay" ? "INR" : "USD";
+    // Calculate amount (in paise for INR)
+    const amount = slot.price || 1000; // Default ₹10 if no price set
+    const currency = "INR"; // Fixed for Razorpay
 
-    let paymentIntent;
-
-    // RAZORPAY ORDER
-
+    // Create Razorpay order
     const options = {
       amount: amount, // Amount in paise
       currency: currency,
@@ -146,7 +139,9 @@ exports.createPaymentIntent = async (req, res) => {
   }
 };
 
+// ========================================
 // VERIFY PAYMENT AND CREATE BOOKING
+// ========================================
 
 exports.verifyPayment = async (req, res) => {
   try {
@@ -166,7 +161,6 @@ exports.verifyPayment = async (req, res) => {
 
     const {
       paymentIntentId,
-      paymentMethod,
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
@@ -183,83 +177,99 @@ exports.verifyPayment = async (req, res) => {
       return res.status(400).json({ message: "Payment already verified" });
     }
 
-    let paymentSucceeded = false;
+    // RAZORPAY SIGNATURE VERIFICATION
 
-    // RAZORPAY VERIFICATION
-
-    // Verify signature
     const generatedSignature = crypto
       .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
       .update(`${razorpay_order_id}|${razorpay_payment_id}`)
       .digest("hex");
 
-    if (generatedSignature === razorpay_signature) {
-      paymentSucceeded = true;
-      payment.status = "succeeded";
-      payment.razorpayPaymentId = razorpay_payment_id;
-      payment.paidAt = new Date();
-      await payment.save();
-    } else {
+    if (generatedSignature !== razorpay_signature) {
+      // Mark payment as failed
       payment.status = "failed";
       await payment.save();
       return res.status(400).json({ message: "Invalid payment signature" });
     }
 
+    // Signature is valid - proceed with payment success
+    payment.status = "succeeded";
+    payment.razorpayPaymentId = razorpay_payment_id;
+    payment.paidAt = new Date();
+    await payment.save();
+
     // CREATE BOOKING AFTER SUCCESSFUL PAYMENT
+    const slot = await Slot.findById(payment.slotId);
 
-    if (paymentSucceeded) {
-      const slot = await Slot.findById(payment.slotId);
-
-      if (!slot || !slot.isActive) {
-        return res.status(400).json({ message: "Slot unavailable" });
-      }
-
-      if (slot.bookedSeats >= slot.maxSeats) {
-        // Refund payment if slot became full
-        return res.status(400).json({
-          message: "Slot became full. Please contact support for refund.",
-        });
-      }
-
-      // Increment booked seats
-      slot.bookedSeats++;
-      await slot.save();
-
-      // Create booking
-      const booking = await Booking.create({
-        userId: payment.userId,
-        slotId: payment.slotId,
-        bookingDate: slot.date,
-        status: "confirmed",
-        paymentId: payment._id,
-      });
-
-      // Update payment with booking reference
-      payment.bookingId = booking._id;
-      await payment.save();
-
-      // Populate slot details
-      await booking.populate("slotId");
-
-      return res.status(201).json({
-        message: "Payment verified and booking confirmed",
-        booking: booking,
-        payment: {
-          id: payment._id,
-          amount: payment.amount,
-          currency: payment.currency,
-          status: payment.status,
-          paidAt: payment.paidAt,
-        },
+    if (!slot || !slot.isActive) {
+      // Payment succeeded but slot is now unavailable
+      // IMPORTANT: Consider implementing auto-refund here
+      return res.status(400).json({
+        message:
+          "Slot unavailable. Payment succeeded. Contact support for refund.",
       });
     }
+
+    if (slot.bookedSeats >= slot.maxSeats) {
+      // Slot became full after payment
+      // IMPORTANT: Consider implementing auto-refund here
+      return res.status(400).json({
+        message: "Slot full. Payment succeeded. Contact support for refund.",
+      });
+    }
+
+    // Check for race condition - another booking might have been created
+    const duplicateBooking = await Booking.findOne({
+      userId: payment.userId,
+      slotId: payment.slotId,
+      status: { $ne: "cancelled" },
+    });
+
+    if (duplicateBooking) {
+      return res.status(400).json({
+        message: "Booking already exists for this slot",
+      });
+    }
+
+    // Increment booked seats
+    slot.bookedSeats += 1;
+    await slot.save();
+
+    // Create booking
+    const booking = await Booking.create({
+      userId: payment.userId,
+      slotId: payment.slotId,
+      bookingDate: slot.date,
+      status: "confirmed",
+      paymentId: payment._id,
+    });
+
+    // Update payment with booking reference
+    payment.bookingId = booking._id;
+    await payment.save();
+
+    // Populate slot details
+    await booking.populate("slotId");
+
+    return res.status(201).json({
+      message: "Payment verified and booking confirmed",
+      booking: booking,
+      payment: {
+        id: payment._id,
+        amount: payment.amount,
+        currency: payment.currency,
+        status: payment.status,
+        paidAt: payment.paidAt,
+      },
+    });
   } catch (err) {
     console.error("Verify payment error:", err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
 
+// ========================================
 // GET PAYMENT STATUS
+// ========================================
 
 exports.getPaymentStatus = async (req, res) => {
   try {
@@ -288,7 +298,9 @@ exports.getPaymentStatus = async (req, res) => {
   }
 };
 
+// ========================================
 // GET USER PAYMENTS
+// ========================================
 
 exports.getMyPayments = async (req, res) => {
   try {
@@ -308,7 +320,9 @@ exports.getMyPayments = async (req, res) => {
   }
 };
 
+// ========================================
 // GET ALL PAYMENTS (ADMIN)
+// ========================================
 
 exports.getAllPayments = async (req, res) => {
   try {
@@ -329,7 +343,9 @@ exports.getAllPayments = async (req, res) => {
   }
 };
 
+// ========================================
 // REFUND PAYMENT (ADMIN)
+// ========================================
 
 exports.refundPayment = async (req, res) => {
   try {
@@ -355,18 +371,34 @@ exports.refundPayment = async (req, res) => {
       return res.status(400).json({ message: "Payment already refunded" });
     }
 
+    // Check if razorpayPaymentId exists
+    if (!payment.razorpayPaymentId) {
+      return res.status(400).json({
+        message: "Razorpay payment ID not found. Cannot process refund.",
+      });
+    }
+
     let refund;
 
     // RAZORPAY REFUND
+    try {
+      refund = await razorpay.payments.refund(payment.razorpayPaymentId, {
+        amount: payment.amount,
+      });
 
-    refund = await razorpay.payments.refund(payment.razorpayPaymentId, {
-      amount: payment.amount,
-    });
-
-    payment.refundStatus = "refunded";
-    payment.refundId = refund.id;
-    payment.refundedAt = new Date();
-    await payment.save();
+      payment.refundStatus = "refunded";
+      payment.refundId = refund.id;
+      payment.refundedAt = new Date();
+      await payment.save();
+    } catch (refundError) {
+      console.error("Razorpay refund error:", refundError);
+      payment.refundStatus = "failed";
+      await payment.save();
+      return res.status(500).json({
+        message: "Refund processing failed",
+        error: refundError.message,
+      });
+    }
 
     // Cancel associated booking if exists
     if (payment.bookingId) {

@@ -1,5 +1,5 @@
-const Booking = require("../models/Booking");
-const Slot = require("../models/Slot");
+const Booking = require("../models/booking");
+const Slot = require("../models/slot");
 const Joi = require("joi");
 
 // Validation schemas
