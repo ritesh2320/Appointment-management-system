@@ -1,2 +1,814 @@
 [2026-02-06T05:36:59.856Z] [INFO]: Database connection initiated 
 [2026-02-06T05:37:02.177Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T04:28:14.653Z] [INFO]: Database connection initiated 
+[2026-02-11T04:28:16.906Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T04:46:17.437Z] [INFO]: Database connection initiated 
+[2026-02-11T04:46:17.620Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T04:47:16.172Z] [INFO]: Database connection initiated 
+[2026-02-11T04:47:16.307Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T04:47:46.057Z] [INFO]: Database connection initiated 
+[2026-02-11T04:47:46.193Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T04:48:11.287Z] [INFO]: Database connection initiated 
+[2026-02-11T04:48:11.418Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T04:48:22.877Z] [INFO]: Database connection initiated 
+[2026-02-11T04:48:23.020Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T04:48:30.917Z] [INFO]: Database connection initiated 
+[2026-02-11T04:48:31.054Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T23:19:14.622Z] [INFO]: Database connection initiated 
+[2026-02-11T23:21:31.414Z] [INFO]: Database connection initiated 
+[2026-02-11T23:21:31.833Z] [INFO]: Database connection initiated 
+[2026-02-11T23:23:04.820Z] [INFO]: Database connection initiated 
+[2026-02-11T23:23:55.263Z] [INFO]: Database connection initiated 
+[2026-02-11T23:23:55.812Z] [INFO]: Database connection initiated 
+[2026-02-11T23:24:51.633Z] [INFO]: Database connection initiated 
+[2026-02-11T23:24:52.125Z] [INFO]: Database connection initiated 
+[2026-02-11T23:25:07.955Z] [INFO]: Database connection initiated 
+[2026-02-11T23:25:44.824Z] [INFO]: Database connection initiated 
+[2026-02-11T23:26:36.958Z] [INFO]: Database connection initiated 
+[2026-02-11T23:26:37.417Z] [INFO]: Database connection initiated 
+[2026-02-11T23:27:24.751Z] [INFO]: Database connection initiated 
+[2026-02-11T23:27:25.197Z] [INFO]: Database connection initiated 
+[2026-02-11T23:28:24.733Z] [INFO]: Database connection initiated 
+[2026-02-11T23:28:48.408Z] [INFO]: Database connection initiated 
+[2026-02-11T23:28:48.559Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T23:31:27.886Z] [INFO]: Database connection initiated 
+[2026-02-11T23:31:28.041Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T23:31:35.410Z] [INFO]: Database connection initiated 
+[2026-02-11T23:31:35.538Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T23:33:03.063Z] [INFO]: Database connection initiated 
+[2026-02-11T23:33:03.213Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T23:56:38.365Z] [INFO]: Database connection initiated 
+[2026-02-11T23:56:38.504Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T23:57:18.157Z] [INFO]: Database connection initiated 
+[2026-02-11T23:57:18.308Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T23:58:20.495Z] [INFO]: Database connection initiated 
+[2026-02-11T23:58:20.635Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-11T23:58:49.019Z] [INFO]: Database connection initiated 
+[2026-02-11T23:58:49.148Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T00:00:52.204Z] [INFO]: Database connection initiated 
+[2026-02-12T00:00:52.343Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T00:02:32.566Z] [INFO]: Database connection initiated 
+[2026-02-12T00:02:32.704Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T00:04:46.791Z] [INFO]: Database connection initiated 
+[2026-02-12T00:04:46.935Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T01:08:21.086Z] [INFO]: Database connection initiated 
+[2026-02-12T01:08:21.257Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T01:09:18.657Z] [WARN]: 404 - Route not found: GET /api/auth/login 
+[2026-02-12T01:09:18.695Z] [WARN]: 404 - Route not found: GET /favicon.ico 
+[2026-02-12T01:27:26.237Z] [INFO]: Database connection initiated 
+[2026-02-12T01:27:26.402Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T01:27:45.305Z] [INFO]: Database connection initiated 
+[2026-02-12T01:27:45.442Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T01:27:46.488Z] [INFO]: Database connection initiated 
+[2026-02-12T01:27:46.636Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T01:42:29.391Z] [INFO]: Database connection initiated 
+[2026-02-12T01:42:29.544Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T03:24:50.832Z] [ERROR]: Error: Expected double-quoted property name in JSON at position 99 (line 13 column 1) {"stack":"SyntaxError: Expected double-quoted property name in JSON at position 99 (line 13 column 1)\n    at JSON.parse (<anonymous>)\n    at parse (E:\\Uttirna\\Backend\\node_modules\\body-parser\\lib\\types\\json.js:72:19)\n    at E:\\Uttirna\\Backend\\node_modules\\body-parser\\lib\\read.js:162:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)\n    at invokeCallback (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:238:16)\n    at done (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:227:7)\n    at IncomingMessage.onEnd (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:287:7)\n    at IncomingMessage.emit (node:events:508:28)\n    at endReadableNT (node:internal/streams/readable:1701:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)","path":"/api/auth/register","method":"POST"}
+[2026-02-12T03:34:13.592Z] [INFO]: Database connection initiated 
+[2026-02-12T03:34:13.731Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T03:34:50.316Z] [INFO]: Database connection initiated 
+[2026-02-12T03:34:50.447Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T03:44:11.734Z] [INFO]: Database connection initiated 
+[2026-02-12T03:44:11.881Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T03:44:38.022Z] [INFO]: Database connection initiated 
+[2026-02-12T03:44:38.151Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T03:45:18.354Z] [INFO]: Database connection initiated 
+[2026-02-12T03:45:18.485Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T03:45:34.514Z] [INFO]: Database connection initiated 
+[2026-02-12T03:45:34.668Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T03:45:35.302Z] [INFO]: Database connection initiated 
+[2026-02-12T03:45:35.440Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:23:39.548Z] [INFO]: Database connection initiated 
+[2026-02-12T05:23:56.005Z] [INFO]: Database connection initiated 
+[2026-02-12T05:23:56.148Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:27:12.362Z] [INFO]: Database connection initiated 
+[2026-02-12T05:27:26.108Z] [INFO]: Database connection initiated 
+[2026-02-12T05:29:30.584Z] [INFO]: Database connection initiated 
+[2026-02-12T05:31:07.347Z] [INFO]: Database connection initiated 
+[2026-02-12T05:31:07.484Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:31:37.357Z] [INFO]: Database connection initiated 
+[2026-02-12T05:31:47.784Z] [INFO]: Database connection initiated 
+[2026-02-12T05:31:47.927Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:31:51.342Z] [INFO]: Database connection initiated 
+[2026-02-12T05:31:51.477Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:35:30.296Z] [WARN]: 404 - Route not found: POST /api/admin/bookings 
+[2026-02-12T05:53:44.680Z] [INFO]: Database connection initiated 
+[2026-02-12T05:53:44.826Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:54:07.816Z] [INFO]: Database connection initiated 
+[2026-02-12T05:54:07.952Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:55:01.861Z] [INFO]: Database connection initiated 
+[2026-02-12T05:55:02.015Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:55:53.727Z] [INFO]: Database connection initiated 
+[2026-02-12T05:55:53.858Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:59:32.266Z] [INFO]: Database connection initiated 
+[2026-02-12T05:59:32.413Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T05:59:56.080Z] [INFO]: Database connection initiated 
+[2026-02-12T05:59:56.230Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:01:11.215Z] [INFO]: Database connection initiated 
+[2026-02-12T06:01:11.351Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:03:53.710Z] [ERROR]: Error: Expected property name or '}' in JSON at position 1 (line 1 column 2) {"stack":"SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)\n    at JSON.parse (<anonymous>)\n    at parse (E:\\Uttirna\\Backend\\node_modules\\body-parser\\lib\\types\\json.js:72:19)\n    at E:\\Uttirna\\Backend\\node_modules\\body-parser\\lib\\read.js:162:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)\n    at invokeCallback (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:238:16)\n    at done (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:227:7)\n    at IncomingMessage.onEnd (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:287:7)\n    at IncomingMessage.emit (node:events:508:28)\n    at endReadableNT (node:internal/streams/readable:1701:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)","path":"/api/bookings/admin/bookings","method":"POST"}
+[2026-02-12T06:06:20.366Z] [INFO]: Database connection initiated 
+[2026-02-12T06:06:20.505Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:06:33.292Z] [INFO]: Database connection initiated 
+[2026-02-12T06:06:33.441Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:07:02.587Z] [INFO]: Database connection initiated 
+[2026-02-12T06:07:02.731Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:07:34.878Z] [INFO]: Database connection initiated 
+[2026-02-12T06:07:35.013Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:08:01.406Z] [INFO]: Database connection initiated 
+[2026-02-12T06:08:01.535Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:08:06.539Z] [ERROR]: Create admin booking error: {"message":"E11000 duplicate key error collection: opt_bookings.bookings index: userId_1_slotId_1 dup key: { userId: ObjectId('698d293433e7721781e35b04'), slotId: ObjectId('698d2aeb33e7721781e35bb1') }","stack":"MongoServerError: E11000 duplicate key error collection: opt_bookings.bookings index: userId_1_slotId_1 dup key: { userId: ObjectId('698d293433e7721781e35b04'), slotId: ObjectId('698d2aeb33e7721781e35bb1') }\n    at InsertOneOperation.handleOk (E:\\Uttirna\\Backend\\node_modules\\mongodb\\lib\\operations\\insert.js:51:19)\n    at tryOperation (E:\\Uttirna\\Backend\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:216:34)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async executeOperation (E:\\Uttirna\\Backend\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:80:16)\n    at async Collection.insertOne (E:\\Uttirna\\Backend\\node_modules\\mongodb\\lib\\collection.js:154:16)\n    at async model.$__save (E:\\Uttirna\\Backend\\node_modules\\mongoose\\lib\\model.js:398:16)\n    at async model.save (E:\\Uttirna\\Backend\\node_modules\\mongoose\\lib\\model.js:609:5)\n    at async E:\\Uttirna\\Backend\\node_modules\\mongoose\\lib\\model.js:2714:9\n    at async Promise.all (index 0)\n    at async model.create (E:\\Uttirna\\Backend\\node_modules\\mongoose\\lib\\model.js:2699:11)","body":{"slotId":"698d2aeb33e7721781e35bb1","patientId":"698d6d162c62f676bc62a362"}}
+[2026-02-12T06:09:27.199Z] [INFO]: Database connection initiated 
+[2026-02-12T06:09:27.352Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:09:34.980Z] [INFO]: Database connection initiated 
+[2026-02-12T06:09:35.134Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:10:22.456Z] [INFO]: Database connection initiated 
+[2026-02-12T06:10:22.585Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:10:25.555Z] [INFO]: Database connection initiated 
+[2026-02-12T06:10:25.687Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:12:40.128Z] [INFO]: Database connection initiated 
+[2026-02-12T06:12:40.268Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:13:03.084Z] [INFO]: Database connection initiated 
+[2026-02-12T06:13:03.225Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:13:03.242Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:13:03.543Z] [INFO]: Booking indexes synchronized and old unique indexes dropped 
+[2026-02-12T06:13:23.333Z] [INFO]: Database connection initiated 
+[2026-02-12T06:13:23.466Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:13:23.483Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:13:23.804Z] [INFO]: Booking indexes synchronized and old unique indexes dropped 
+[2026-02-12T06:13:25.148Z] [INFO]: Database connection initiated 
+[2026-02-12T06:13:25.283Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:13:25.305Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:13:25.609Z] [INFO]: Booking indexes synchronized and old unique indexes dropped 
+[2026-02-12T06:13:32.267Z] [INFO]: Database connection initiated 
+[2026-02-12T06:13:32.444Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:13:32.460Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:13:32.484Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T06:13:54.498Z] [INFO]: Database connection initiated 
+[2026-02-12T06:13:54.628Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:13:54.645Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:13:54.669Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T06:30:50.785Z] [INFO]: Database connection initiated 
+[2026-02-12T06:30:50.940Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:30:50.957Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:30:50.979Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T06:31:42.233Z] [INFO]: Database connection initiated 
+[2026-02-12T06:31:42.365Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:31:42.387Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:31:42.412Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T06:32:17.236Z] [INFO]: Database connection initiated 
+[2026-02-12T06:32:17.372Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:32:17.393Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:32:17.417Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T06:37:13.286Z] [INFO]: Database connection initiated 
+[2026-02-12T06:37:13.426Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:37:13.449Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:37:13.471Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T06:37:48.282Z] [INFO]: Database connection initiated 
+[2026-02-12T06:37:48.408Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:37:48.428Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:37:48.450Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T06:47:14.745Z] [INFO]: Database connection initiated 
+[2026-02-12T06:47:14.871Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T06:47:14.894Z] [INFO]: MongoDB Connected 
+[2026-02-12T06:47:14.917Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T08:43:08.993Z] [INFO]: Database connection initiated 
+[2026-02-12T08:43:09.291Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T08:43:09.315Z] [INFO]: MongoDB Connected 
+[2026-02-12T08:43:09.342Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:30:59.051Z] [INFO]: Database connection initiated 
+[2026-02-12T09:30:59.259Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:30:59.280Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:30:59.309Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:31:42.173Z] [INFO]: Database connection initiated 
+[2026-02-12T09:31:42.358Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:31:42.373Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:31:42.398Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:36:43.035Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:43.048Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:43.137Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:43.144Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:44.441Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:44.448Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:44.615Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:44.647Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:44.764Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:44.774Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:44.921Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:44.932Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:45.073Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:45.080Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:45.238Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:45.245Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:45.457Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:45.463Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:36:49.764Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:37:37.992Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:37:38.153Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:37:38.369Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:37:39.286Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:37:39.502Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:40:06.913Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:40:07.036Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:40:07.203Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:43:09.289Z] [INFO]: Database connection initiated 
+[2026-02-12T09:43:09.493Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:43:09.514Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:43:09.537Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:43:13.333Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:43:26.344Z] [INFO]: Database connection initiated 
+[2026-02-12T09:43:26.533Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:43:26.551Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:43:26.608Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:43:31.112Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:43:31.954Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:46:15.489Z] [INFO]: Database connection initiated 
+[2026-02-12T09:46:15.659Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:46:15.682Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:46:15.706Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:46:17.379Z] [INFO]: Database connection initiated 
+[2026-02-12T09:46:17.540Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:46:17.565Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:46:17.593Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:46:27.910Z] [INFO]: Database connection initiated 
+[2026-02-12T09:46:28.132Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:46:28.164Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:46:28.203Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:47:08.484Z] [INFO]: Database connection initiated 
+[2026-02-12T09:47:08.798Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:47:08.823Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:47:08.867Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:47:29.605Z] [INFO]: Database connection initiated 
+[2026-02-12T09:47:29.882Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:47:29.927Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:47:29.980Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:47:39.410Z] [INFO]: Database connection initiated 
+[2026-02-12T09:47:39.787Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:47:39.812Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:47:39.844Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:48:12.111Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:12.131Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:13.514Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:13.574Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:13.683Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:13.694Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:13.810Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:13.837Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:13.984Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:13.996Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.163Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.189Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.374Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.422Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.484Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.544Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.722Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.730Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.832Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:14.845Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:15.075Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:15.085Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:17.897Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:18.119Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:48:47.350Z] [INFO]: Database connection initiated 
+[2026-02-12T09:48:47.549Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:48:47.590Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:48:47.627Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:49:21.857Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:49:21.872Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:49:22.753Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:49:22.907Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:49:23.038Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:49:23.261Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:49:36.653Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:49:36.661Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:50:58.492Z] [INFO]: Database connection initiated 
+[2026-02-12T09:50:58.762Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:50:58.786Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:50:58.822Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:51:29.996Z] [INFO]: Database connection initiated 
+[2026-02-12T09:52:05.305Z] [INFO]: Database connection initiated 
+[2026-02-12T09:52:06.073Z] [INFO]: Database connection initiated 
+[2026-02-12T09:52:31.467Z] [INFO]: Database connection initiated 
+[2026-02-12T09:52:32.274Z] [INFO]: Database connection initiated 
+[2026-02-12T09:52:32.711Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:52:32.806Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:52:32.854Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:52:39.729Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:40.510Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:40.760Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:40.915Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:41.055Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:41.345Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:41.505Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:41.637Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:41.805Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:41.966Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:42.121Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:42.446Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:42.588Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:42.737Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:52:42.962Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:53:35.702Z] [INFO]: Database connection initiated 
+[2026-02-12T09:53:35.902Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:53:35.921Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:53:35.950Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:53:49.290Z] [INFO]: Database connection initiated 
+[2026-02-12T09:53:49.530Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:53:49.573Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:53:49.627Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:54:03.763Z] [INFO]: Database connection initiated 
+[2026-02-12T09:54:03.979Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:54:04.012Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:54:04.047Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:54:10.579Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:11.298Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:11.523Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:11.913Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:12.064Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:12.281Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:13.785Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:13.801Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:14.683Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:14.693Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:14.928Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:14.938Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.082Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.091Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.245Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.255Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.417Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.426Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.589Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.599Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.876Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:15.885Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:16.036Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:16.045Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:16.220Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:16.229Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:16.397Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:16.406Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:16.586Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:16.597Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:54:44.247Z] [INFO]: Database connection initiated 
+[2026-02-12T09:54:44.434Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:54:44.460Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:54:44.492Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:55:46.013Z] [INFO]: Database connection initiated 
+[2026-02-12T09:55:46.189Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:55:46.214Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:55:46.243Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:55:56.401Z] [INFO]: Database connection initiated 
+[2026-02-12T09:55:56.708Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:55:56.729Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:55:56.758Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:56:35.569Z] [INFO]: Database connection initiated 
+[2026-02-12T09:56:35.737Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:56:35.768Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:56:35.818Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T09:56:40.041Z] [WARN]: 404 - Route not found: GET /api/slots/admin/available 
+[2026-02-12T09:59:12.100Z] [INFO]: Database connection initiated 
+[2026-02-12T09:59:12.400Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T09:59:12.436Z] [INFO]: MongoDB Connected 
+[2026-02-12T09:59:12.499Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T10:39:55.386Z] [INFO]: Database connection initiated 
+[2026-02-12T10:39:55.540Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T10:39:55.563Z] [INFO]: MongoDB Connected 
+[2026-02-12T10:39:55.588Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T10:40:01.277Z] [INFO]: Database connection initiated 
+[2026-02-12T10:40:01.441Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T10:40:01.462Z] [INFO]: MongoDB Connected 
+[2026-02-12T10:40:01.487Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:16:23.470Z] [INFO]: Database connection initiated 
+[2026-02-12T22:16:23.768Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:16:23.787Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:16:23.817Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:17:25.751Z] [ERROR]: Error: Unexpected non-whitespace character after JSON at position 77 (line 13 column 1) {"stack":"SyntaxError: Unexpected non-whitespace character after JSON at position 77 (line 13 column 1)\n    at JSON.parse (<anonymous>)\n    at parse (E:\\Uttirna\\Backend\\node_modules\\body-parser\\lib\\types\\json.js:72:19)\n    at E:\\Uttirna\\Backend\\node_modules\\body-parser\\lib\\read.js:162:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)\n    at invokeCallback (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:238:16)\n    at done (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:227:7)\n    at IncomingMessage.onEnd (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:287:7)\n    at IncomingMessage.emit (node:events:508:28)\n    at endReadableNT (node:internal/streams/readable:1701:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)","path":"/api/auth/login","method":"POST"}
+[2026-02-12T22:19:02.995Z] [INFO]: Database connection initiated 
+[2026-02-12T22:19:03.207Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:19:03.254Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:19:03.295Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:19:36.136Z] [INFO]: Database connection initiated 
+[2026-02-12T22:19:36.425Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:19:36.474Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:19:36.528Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:19:46.123Z] [INFO]: Database connection initiated 
+[2026-02-12T22:19:46.283Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:19:46.307Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:19:46.339Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:19:57.209Z] [INFO]: Database connection initiated 
+[2026-02-12T22:19:57.437Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:19:57.479Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:19:57.527Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:20:07.444Z] [INFO]: Database connection initiated 
+[2026-02-12T22:20:07.625Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:20:07.671Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:20:07.705Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:21:10.048Z] [INFO]: Database connection initiated 
+[2026-02-12T22:21:10.229Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:21:10.249Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:21:10.275Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:22:35.156Z] [INFO]: Database connection initiated 
+[2026-02-12T22:22:35.415Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:22:35.437Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:22:35.468Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:22:45.973Z] [INFO]: Database connection initiated 
+[2026-02-12T22:22:46.182Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:22:46.211Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:22:46.240Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:30:38.972Z] [WARN]: 404 - Route not found: GET /api/slots 
+[2026-02-12T22:30:38.988Z] [WARN]: 404 - Route not found: GET /api/slots 
+[2026-02-12T22:51:16.491Z] [INFO]: Database connection initiated 
+[2026-02-12T22:51:16.705Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:51:16.725Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:51:16.746Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:53:59.749Z] [INFO]: Database connection initiated 
+[2026-02-12T22:55:41.518Z] [INFO]: Database connection initiated 
+[2026-02-12T22:55:41.756Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:55:41.778Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:55:41.814Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:56:53.702Z] [INFO]: Database connection initiated 
+[2026-02-12T22:56:54.419Z] [INFO]: Database connection initiated 
+[2026-02-12T22:56:54.570Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:56:54.590Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:56:54.618Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:57:05.006Z] [INFO]: Database connection initiated 
+[2026-02-12T22:57:05.186Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:57:05.224Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:57:05.250Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:57:43.761Z] [INFO]: Database connection initiated 
+[2026-02-12T22:58:20.788Z] [INFO]: Database connection initiated 
+[2026-02-12T22:58:20.946Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:58:20.966Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:58:20.995Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:58:29.325Z] [INFO]: Database connection initiated 
+[2026-02-12T22:58:29.523Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:58:29.563Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:58:29.594Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:58:32.190Z] [INFO]: Database connection initiated 
+[2026-02-12T22:58:32.333Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:58:32.355Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:58:32.382Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:58:36.312Z] [INFO]: Database connection initiated 
+[2026-02-12T22:58:36.463Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:58:36.492Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:58:36.530Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T22:59:04.008Z] [INFO]: Database connection initiated 
+[2026-02-12T22:59:04.278Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T22:59:04.333Z] [INFO]: MongoDB Connected 
+[2026-02-12T22:59:04.357Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:11:05.416Z] [WARN]: 404 - Route not found: GET /api/bookings 
+[2026-02-12T23:11:05.425Z] [WARN]: 404 - Route not found: GET /api/bookings 
+[2026-02-12T23:11:05.432Z] [WARN]: 404 - Route not found: GET /api/slots 
+[2026-02-12T23:11:05.440Z] [WARN]: 404 - Route not found: GET /api/slots 
+[2026-02-12T23:12:11.114Z] [WARN]: 404 - Route not found: GET /api/bookings 
+[2026-02-12T23:12:11.123Z] [WARN]: 404 - Route not found: GET /api/bookings 
+[2026-02-12T23:14:50.027Z] [WARN]: 404 - Route not found: GET /api/bookings/slot/698d2aeb33e7721781e35bb1 
+[2026-02-12T23:23:26.948Z] [WARN]: 404 - Route not found: GET /api/bookings//slots/698d2aeb33e7721781e35bb1 
+[2026-02-12T23:23:28.901Z] [WARN]: 404 - Route not found: GET /api/bookings//slots/698d2aeb33e7721781e35bb1 
+[2026-02-12T23:33:04.461Z] [INFO]: Database connection initiated 
+[2026-02-12T23:33:04.600Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:33:04.627Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:33:04.651Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:35:12.073Z] [INFO]: Database connection initiated 
+[2026-02-12T23:35:19.980Z] [INFO]: Database connection initiated 
+[2026-02-12T23:35:20.126Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:35:20.160Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:35:20.186Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:35:57.812Z] [INFO]: Database connection initiated 
+[2026-02-12T23:36:01.642Z] [INFO]: Database connection initiated 
+[2026-02-12T23:36:01.787Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:36:01.809Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:36:01.838Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:37:16.988Z] [INFO]: Database connection initiated 
+[2026-02-12T23:37:17.126Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:37:17.143Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:37:17.168Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:41:45.929Z] [INFO]: Database connection initiated 
+[2026-02-12T23:42:01.611Z] [INFO]: Database connection initiated 
+[2026-02-12T23:42:11.230Z] [INFO]: Database connection initiated 
+[2026-02-12T23:43:10.491Z] [INFO]: Database connection initiated 
+[2026-02-12T23:43:10.636Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:43:10.658Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:43:10.684Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:43:11.967Z] [INFO]: Database connection initiated 
+[2026-02-12T23:43:12.098Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:43:12.123Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:43:12.147Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:44:56.045Z] [INFO]: Database connection initiated 
+[2026-02-12T23:44:56.187Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:44:56.208Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:44:56.232Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:45:55.431Z] [INFO]: Database connection initiated 
+[2026-02-12T23:45:55.564Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:45:55.591Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:45:55.623Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:47:52.221Z] [INFO]: Database connection initiated 
+[2026-02-12T23:47:52.357Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:47:52.380Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:47:52.405Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:48:39.369Z] [INFO]: Database connection initiated 
+[2026-02-12T23:48:39.501Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:48:39.523Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:48:39.546Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:49:18.882Z] [INFO]: Database connection initiated 
+[2026-02-12T23:49:19.026Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:49:19.044Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:49:19.077Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:49:47.385Z] [INFO]: Database connection initiated 
+[2026-02-12T23:49:47.545Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:49:47.569Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:49:47.592Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:50:03.801Z] [INFO]: Database connection initiated 
+[2026-02-12T23:50:03.939Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:50:03.965Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:50:03.989Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:52:28.990Z] [INFO]: Database connection initiated 
+[2026-02-12T23:52:29.136Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:52:29.154Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:52:29.194Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:53:16.161Z] [INFO]: Database connection initiated 
+[2026-02-12T23:53:16.300Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-12T23:53:16.323Z] [INFO]: MongoDB Connected 
+[2026-02-12T23:53:16.350Z] [INFO]: Booking indexes synchronized 
+[2026-02-12T23:55:00.246Z] [WARN]: 404 - Route not found: GET /api/bookings/slot/698d2aeb33e7721781e35bb1 
+[2026-02-12T23:55:09.878Z] [WARN]: 404 - Route not found: GET /api/bookings/slot/698d2aeb33e7721781e35bb1 
+[2026-02-12T23:55:14.937Z] [WARN]: 404 - Route not found: GET /api/bookings/slot/698d2aeb33e7721781e35bb1 
+[2026-02-12T23:55:16.190Z] [WARN]: 404 - Route not found: GET /api/bookings/slot/698d2aeb33e7721781e35bb1 
+[2026-02-12T23:55:50.828Z] [WARN]: 404 - Route not found: GET /api/bookings/slot/698d2aeb33e7721781e35bb1 
+[2026-02-13T00:11:19.595Z] [INFO]: Database connection initiated 
+[2026-02-13T00:11:19.733Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T00:11:19.755Z] [INFO]: MongoDB Connected 
+[2026-02-13T00:11:19.780Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T00:11:56.302Z] [INFO]: Database connection initiated 
+[2026-02-13T00:11:56.448Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T00:11:56.466Z] [INFO]: MongoDB Connected 
+[2026-02-13T00:11:56.488Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T00:32:01.022Z] [INFO]: Database connection initiated 
+[2026-02-13T00:32:01.163Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T00:32:01.190Z] [INFO]: MongoDB Connected 
+[2026-02-13T00:32:01.222Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T00:32:02.213Z] [INFO]: Database connection initiated 
+[2026-02-13T00:32:02.359Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T00:32:02.378Z] [INFO]: MongoDB Connected 
+[2026-02-13T00:32:02.405Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T00:32:12.119Z] [INFO]: Database connection initiated 
+[2026-02-13T00:32:12.267Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T00:32:12.287Z] [INFO]: MongoDB Connected 
+[2026-02-13T00:32:12.312Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T00:32:12.967Z] [INFO]: Database connection initiated 
+[2026-02-13T00:32:13.105Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T00:32:13.122Z] [INFO]: MongoDB Connected 
+[2026-02-13T00:32:13.144Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T00:35:12.918Z] [ERROR]: Create booking error: {"errors":{"patientId":{"name":"ValidatorError","message":"Path `patientId` is required.","properties":{"message":"Path `patientId` is required.","type":"required","path":"patientId"},"kind":"required","path":"patientId"}},"_message":"Booking validation failed","name":"ValidationError","message":"Booking validation failed: patientId: Path `patientId` is required."}
+[2026-02-13T00:43:54.301Z] [INFO]: Database connection initiated 
+[2026-02-13T00:43:54.436Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T00:43:54.461Z] [INFO]: MongoDB Connected 
+[2026-02-13T00:43:54.485Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T00:47:56.518Z] [INFO]: Database connection initiated 
+[2026-02-13T00:47:56.678Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T00:47:56.707Z] [INFO]: MongoDB Connected 
+[2026-02-13T00:47:56.733Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T00:48:04.635Z] [ERROR]: Create booking error: {"errors":{"patientId":{"name":"ValidatorError","message":"Path `patientId` is required.","properties":{"message":"Path `patientId` is required.","type":"required","path":"patientId"},"kind":"required","path":"patientId"}},"_message":"Booking validation failed","name":"ValidationError","message":"Booking validation failed: patientId: Path `patientId` is required."}
+[2026-02-13T00:57:21.837Z] [INFO]: Database connection initiated 
+[2026-02-13T00:57:21.987Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T00:57:22.005Z] [INFO]: MongoDB Connected 
+[2026-02-13T00:57:22.028Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:00:33.626Z] [INFO]: Database connection initiated 
+[2026-02-13T01:00:33.768Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:00:33.788Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:00:33.814Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:01:04.534Z] [INFO]: Database connection initiated 
+[2026-02-13T01:01:04.691Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:01:04.735Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:01:04.766Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:01:24.534Z] [INFO]: Database connection initiated 
+[2026-02-13T01:01:24.683Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:01:24.704Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:01:24.732Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:01:27.833Z] [INFO]: Database connection initiated 
+[2026-02-13T01:01:27.987Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:01:28.007Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:01:28.038Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:32:42.492Z] [INFO]: Database connection initiated 
+[2026-02-13T01:32:42.678Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:32:42.693Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:32:42.717Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:35:52.304Z] [INFO]: Database connection initiated 
+[2026-02-13T01:35:52.481Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:35:52.506Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:35:52.534Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:36:04.638Z] [INFO]: Database connection initiated 
+[2026-02-13T01:36:04.839Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:36:04.918Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:36:04.952Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:36:30.791Z] [INFO]: Database connection initiated 
+[2026-02-13T01:36:30.966Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:36:30.994Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:36:31.025Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:36:54.766Z] [INFO]: Database connection initiated 
+[2026-02-13T01:36:54.930Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:36:54.958Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:36:54.992Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:37:27.399Z] [INFO]: Database connection initiated 
+[2026-02-13T01:37:27.546Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:37:27.569Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:37:27.594Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:37:41.652Z] [INFO]: Database connection initiated 
+[2026-02-13T01:37:41.814Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:37:41.843Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:37:41.901Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:37:56.133Z] [INFO]: Database connection initiated 
+[2026-02-13T01:37:56.282Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:37:56.315Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:37:56.340Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:38:05.570Z] [INFO]: Database connection initiated 
+[2026-02-13T01:38:05.808Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:38:05.829Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:38:05.860Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:41:54.533Z] [INFO]: Database connection initiated 
+[2026-02-13T01:41:54.769Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:41:54.798Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:41:54.842Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:45:43.563Z] [INFO]: Database connection initiated 
+[2026-02-13T01:45:43.738Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:45:43.755Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:45:43.780Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:48:12.968Z] [INFO]: Database connection initiated 
+[2026-02-13T01:48:21.683Z] [INFO]: Database connection initiated 
+[2026-02-13T01:48:22.176Z] [INFO]: Database connection initiated 
+[2026-02-13T01:48:51.799Z] [INFO]: Database connection initiated 
+[2026-02-13T01:48:51.977Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:48:51.998Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:48:52.030Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:49:12.756Z] [INFO]: Database connection initiated 
+[2026-02-13T01:49:12.969Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:49:12.991Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:49:13.016Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:49:45.808Z] [INFO]: Database connection initiated 
+[2026-02-13T01:49:45.998Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:49:46.034Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:49:46.062Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:49:50.719Z] [INFO]: Database connection initiated 
+[2026-02-13T01:49:50.872Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:49:50.897Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:49:50.929Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:51:09.779Z] [INFO]: Database connection initiated 
+[2026-02-13T01:51:09.975Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:51:10.002Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:51:10.031Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:53:47.625Z] [INFO]: Database connection initiated 
+[2026-02-13T01:53:47.834Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:53:47.880Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:53:47.912Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:55:47.748Z] [INFO]: Database connection initiated 
+[2026-02-13T01:55:48.228Z] [INFO]: Database connection initiated 
+[2026-02-13T01:55:48.439Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:55:48.477Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:55:48.522Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:55:49.065Z] [INFO]: Database connection initiated 
+[2026-02-13T01:55:49.245Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:55:49.270Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:55:49.304Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:56:17.710Z] [INFO]: Database connection initiated 
+[2026-02-13T01:56:17.901Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:56:17.926Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:56:17.950Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T01:56:18.461Z] [INFO]: Database connection initiated 
+[2026-02-13T01:56:18.617Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T01:56:18.639Z] [INFO]: MongoDB Connected 
+[2026-02-13T01:56:18.676Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:10:46.391Z] [INFO]: Database connection initiated 
+[2026-02-13T03:10:46.534Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:10:46.553Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:10:46.581Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:11:34.925Z] [INFO]: Database connection initiated 
+[2026-02-13T03:11:35.063Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:11:35.095Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:11:35.138Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:11:44.646Z] [INFO]: Database connection initiated 
+[2026-02-13T03:11:44.778Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:11:44.800Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:11:44.823Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:17:06.786Z] [INFO]: Database connection initiated 
+[2026-02-13T03:17:06.930Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:17:06.949Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:17:06.978Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:18:36.416Z] [INFO]: Database connection initiated 
+[2026-02-13T03:18:36.554Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:18:36.575Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:18:36.606Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:18:37.478Z] [INFO]: Database connection initiated 
+[2026-02-13T03:18:37.608Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:18:37.633Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:18:37.655Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:20:17.665Z] [INFO]: Database connection initiated 
+[2026-02-13T03:20:17.806Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:20:17.831Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:20:17.860Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:20:20.119Z] [INFO]: Database connection initiated 
+[2026-02-13T03:20:20.255Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:20:20.273Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:20:20.298Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:21:10.370Z] [INFO]: Database connection initiated 
+[2026-02-13T03:21:10.505Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:21:10.548Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:21:10.571Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:24:15.867Z] [INFO]: Database connection initiated 
+[2026-02-13T03:24:16.014Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:24:16.032Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:24:16.056Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:24:47.363Z] [INFO]: Database connection initiated 
+[2026-02-13T03:24:47.497Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:24:47.516Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:24:47.542Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:26:25.588Z] [INFO]: Database connection initiated 
+[2026-02-13T03:26:25.719Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:26:25.744Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:26:26.095Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:28:01.633Z] [INFO]: Database connection initiated 
+[2026-02-13T03:28:01.769Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:28:01.794Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:28:01.845Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:28:46.916Z] [INFO]: Database connection initiated 
+[2026-02-13T03:28:47.054Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:28:47.074Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:28:47.099Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T03:36:33.137Z] [INFO]: Database connection initiated 
+[2026-02-13T03:36:33.268Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T03:36:33.287Z] [INFO]: MongoDB Connected 
+[2026-02-13T03:36:33.310Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:04:33.652Z] [INFO]: Database connection initiated 
+[2026-02-13T04:06:21.274Z] [INFO]: Database connection initiated 
+[2026-02-13T04:06:21.407Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:06:21.425Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:06:21.447Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:07:31.053Z] [INFO]: Database connection initiated 
+[2026-02-13T04:07:31.201Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:07:31.218Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:07:31.246Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:09:31.555Z] [INFO]: Database connection initiated 
+[2026-02-13T04:10:05.421Z] [INFO]: Database connection initiated 
+[2026-02-13T04:10:20.479Z] [INFO]: Database connection initiated 
+[2026-02-13T04:10:20.613Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:10:20.635Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:10:20.659Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:11:21.156Z] [INFO]: Database connection initiated 
+[2026-02-13T04:11:21.294Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:11:21.312Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:11:21.344Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:12:59.158Z] [INFO]: Database connection initiated 
+[2026-02-13T04:12:59.299Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:12:59.316Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:12:59.339Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:34:38.322Z] [INFO]: Database connection initiated 
+[2026-02-13T04:34:38.456Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:34:38.482Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:34:38.504Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:35:18.286Z] [INFO]: Database connection initiated 
+[2026-02-13T04:35:18.442Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:35:18.461Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:35:18.487Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:35:19.332Z] [INFO]: Database connection initiated 
+[2026-02-13T04:35:19.462Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:35:19.483Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:35:19.506Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:35:43.115Z] [INFO]: Database connection initiated 
+[2026-02-13T04:35:43.261Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:35:43.284Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:35:43.306Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:35:56.024Z] [INFO]: Database connection initiated 
+[2026-02-13T04:35:56.152Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:35:56.175Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:35:56.199Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T04:57:26.825Z] [INFO]: Database connection initiated 
+[2026-02-13T04:57:26.969Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T04:57:26.995Z] [INFO]: MongoDB Connected 
+[2026-02-13T04:57:27.019Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T05:01:18.391Z] [INFO]: Database connection initiated 
+[2026-02-13T05:01:35.853Z] [INFO]: Database connection initiated 
+[2026-02-13T05:01:59.805Z] [INFO]: Database connection initiated 
+[2026-02-13T05:01:59.938Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T05:01:59.959Z] [INFO]: MongoDB Connected 
+[2026-02-13T05:01:59.982Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T05:02:05.513Z] [INFO]: Database connection initiated 
+[2026-02-13T05:02:05.669Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T05:02:05.692Z] [INFO]: MongoDB Connected 
+[2026-02-13T05:02:05.717Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T05:07:24.624Z] [INFO]: Database connection initiated 
+[2026-02-13T05:07:24.756Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T05:07:24.782Z] [INFO]: MongoDB Connected 
+[2026-02-13T05:07:24.825Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T23:19:02.289Z] [INFO]: Database connection initiated 
+[2026-02-13T23:19:02.849Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T23:19:02.866Z] [INFO]: MongoDB Connected 
+[2026-02-13T23:19:02.884Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T23:28:17.746Z] [INFO]: Database connection initiated 
+[2026-02-13T23:28:17.877Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T23:28:17.895Z] [INFO]: MongoDB Connected 
+[2026-02-13T23:28:17.916Z] [INFO]: Booking indexes synchronized 
+[2026-02-13T23:32:28.154Z] [INFO]: Database connection initiated 
+[2026-02-13T23:32:28.292Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-13T23:32:28.314Z] [INFO]: MongoDB Connected 
+[2026-02-13T23:32:28.336Z] [INFO]: Booking indexes synchronized 

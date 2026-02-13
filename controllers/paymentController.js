@@ -50,9 +50,9 @@ const verifyPaymentSchema = Joi.object({
 
 exports.createPaymentIntent = async (req, res) => {
   try {
-    // Only customers can make payments
-    if (req.user.role !== "customer") {
-      return res.status(403).json({ message: "Customers only" });
+    // Only users can make payments
+    if (req.user.role !== "user") {
+      return res.status(403).json({ message: "users only" });
     }
 
     // Validate request
@@ -304,8 +304,8 @@ exports.getPaymentStatus = async (req, res) => {
 
 exports.getMyPayments = async (req, res) => {
   try {
-    if (req.user.role !== "customer") {
-      return res.status(403).json({ message: "Customers only" });
+    if (req.user.role !== "user") {
+      return res.status(403).json({ message: "users only" });
     }
 
     const payments = await Payment.find({ userId: req.user.id })

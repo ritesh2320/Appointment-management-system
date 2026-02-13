@@ -1,39 +1,81 @@
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../config/jwt"); // Import secret
+const { JWT_SECRET } = require("../config/jwt");
 
-module.exports = (req, res, next) => {
-  const authHeader = req.headers.authorization || req?.headers?.cookie;
+/**
+ * 🔐 Authenticate JWT Token
+ */
+const authenticate = (req, res, next) => {
+  let token;
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ message: "Token missing" });
+  // 1️⃣ Check Authorization header
+  if (req.headers.authorization?.startsWith("Bearer ")) {
+    token = req.headers.authorization.split(" ")[1];
   }
 
-  const token = authHeader.split(" ")[1];
+  // 2️⃣ Optional: Check cookie (if using cookies)
+  else if (req.cookies?.token) {
+    token = req.cookies.token;
+  }
+
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: "Authentication token missing",
+    });
+  }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET); // Use JWT_SECRET
-    req.user = decoded; // { id, role }
+    const decoded = jwt.verify(token, JWT_SECRET);
+
+    // Attach clean user object
+    req.user = {
+      id: decoded.id,
+      role: decoded.role,
+    };
+
     next();
   } catch (error) {
-    return res.status(401).json({ message: "Invalid or expired token" });
+    return res.status(401).json({
+      success: false,
+      message: "Invalid or expired token",
+    });
   }
 };
 
-// const User = require("../models/User");
+/**
+ * 🔐 Authorize Roles
+ */
+const authorizeRoles = (...roles) => {
+  return (req, res, next) => {
+    if (!req.user) {
+      return res.status(401).json({
+        success: false,
+        message: "Authentication required",
+      });
+    }
 
-// module.exports = async (req, res, next) => {
-//   const token = req.headers.authorization || req?.headers?.cookie;
-//   console.log(token, "token===========");
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({
+        success: false,
+        message: `Access denied. Allowed roles: ${roles.join(", ")}`,
+      });
+    }
 
-//   if (!token) {
-//     return res.status(401).json({ message: "No token provided" });
-//   }
+    next();
+  };
+};
 
-//   //   const user = await User.findOne({ token });
-//   //   if (!user) {
-//   //     return res.status(401).json({ message: "Invalid token" });
-//   //   }
+/**
+ * 👤 Role Shortcuts
+ */
+const authorizeAdmin = authorizeRoles("admin");
+const authorizeUser = authorizeRoles("patient");
+const authorizeSuperAdmin = authorizeRoles("superadmin");
 
-//   const user = (req.user = user);
-//   next();
-// };
+module.exports = {
+  authenticate,
+  authorizeAdmin,
+  authorizeSuperAdmin,
+  authorizeRoles,
+  authorizeUser,
+};

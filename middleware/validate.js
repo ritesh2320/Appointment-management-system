@@ -1,33 +1,47 @@
-const Joi = require("joi");
-
 /**
- * Validation middleware factory
- * @param {Joi.Schema} schema - Joi validation schema
- * @param {string} property - Request property to validate (body, query, params)
- * @returns {Function} Express middleware function
+ * Validation Middleware
+ * Validates request data against Joi schemas
  */
-const validate = (schema, property = "body") => {
+
+const validate = (schema, source = "body") => {
   return (req, res, next) => {
-    const { error, value } = schema.validate(req[property], {
-      abortEarly: false, // Return all errors
+    // Determine which part of the request to validate
+    const dataToValidate = source === "params" 
+      ? req.params 
+      : source === "query" 
+      ? req.query 
+      : req.body;
+
+    // Validate the data
+    const { error, value } = schema.validate(dataToValidate, {
+      abortEarly: false, // Return all errors, not just the first one
       stripUnknown: true, // Remove unknown fields
-      convert: true, // Convert types when possible
     });
 
     if (error) {
+      // Format validation errors
       const errors = error.details.map((detail) => ({
         field: detail.path.join("."),
         message: detail.message,
       }));
 
       return res.status(400).json({
-        message: "Validation failed",
-        errors: errors,
+        success: false,
+        message: "Validation error",
+        errors,
       });
     }
 
-    // Replace request property with validated value
-    req[property] = value;
+    // Replace the request data with validated (and possibly transformed) data
+    if (source === "params") {
+      req.params = value;
+    } else if (source === "query") {
+      req.query = value;
+    } else {
+      req.body = value;
+    }
+
+    // Call next middleware
     next();
   };
 };

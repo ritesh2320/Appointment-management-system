@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Patient = require("../models/patient");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Joi = require("joi");
@@ -31,8 +32,8 @@ const registerSchema = Joi.object({
     "any.required": "Password is required",
   }),
 
-  role: Joi.string().valid("customer", "admin").default("customer").messages({
-    "any.only": "Role must be either 'customer' or 'admin'",
+  role: Joi.string().valid("patient", "admin").default("patient").messages({
+    "any.only": "Role must be either 'patient' or 'admin'",
   }),
 });
 
@@ -55,47 +56,107 @@ const loginSchema = Joi.object({
 });
 
 // Register handler
+// exports.register = async (req, res) => {
+//   try {
+//     // Validate request body
+//     const { error, value } = registerSchema.validate(req.body, {
+//       abortEarly: false, // Return all errors, not just the first one
+//       stripUnknown: true, // Remove unknown fields
+//     });
+
+//     if (error) {
+//       const errors = error.details.map((detail) => detail.message);
+//       return res.status(400).json({
+//         message: "Validation failed",
+//         errors: errors,
+//       });
+//     }
+
+//     const { name, email, password, role } = value;
+
+//     // Check if user already exists
+//     const exists = await User.findOne({ email });
+//     if (exists) {
+//       return res.status(400).json({ message: "User already exists" });
+//     }
+
+//     // Hash password
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     // Create user
+//     await User.create({
+//       name,
+//       email,
+//       password: hashedPassword,
+//       role: role || "patient",
+//     });
+
+//     res.status(201).json({ message: "Registered successfully" });
+//   } catch (err) {
+//     console.error("Register error:", err);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// };
+
 exports.register = async (req, res) => {
   try {
     // Validate request body
     const { error, value } = registerSchema.validate(req.body, {
-      abortEarly: false, // Return all errors, not just the first one
-      stripUnknown: true, // Remove unknown fields
+      abortEarly: false,
+      stripUnknown: true,
     });
 
     if (error) {
-      const errors = error.details.map((detail) => detail.message);
       return res.status(400).json({
         message: "Validation failed",
-        errors: errors,
+        errors: error.details.map((detail) => detail.message),
       });
     }
 
     const { name, email, password, role } = value;
 
     // Check if user already exists
-    const exists = await User.findOne({ email });
-    if (exists) {
-      return res.status(400).json({ message: "User already exists" });
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        message: "User already exists",
+      });
     }
 
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user
-    await User.create({
+    const user = await User.create({
       name,
       email,
       password: hashedPassword,
-      role: role || "customer",
+      role: role || "patient", // default role
     });
 
-    res.status(201).json({ message: "Registered successfully" });
+    // 🔥 Auto-create patient profile for normal users
+    if (user.role === "patient") {
+      await Patient.create({
+        userId: user._id,
+        name: user.name,
+        email: user.email,
+        createdBy: user._id,
+      });
+    }
+
+    return res.status(201).json({
+      message: "Registered successfully",
+    });
+
   } catch (err) {
     console.error("Register error:", err);
-    res.status(500).json({ message: "Server error" });
+    return res.status(500).json({
+      message: "Server error",
+      error: err.message,
+    });
   }
 };
+
 
 // Login handler
 exports.login = async (req, res) => {

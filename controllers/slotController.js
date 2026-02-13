@@ -109,3 +109,44 @@ exports.getAvailableSlots = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+exports.getAvailableSlotsByAdmin =async (req,res) =>{
+   try {
+    const slots = await Slot.aggregate([
+      {
+        $match: { isActive: true },
+      },
+      {
+        $match: {
+          $expr: {
+            $lt: ["$bookedSeats", "$maxSeats"],
+          },
+        },
+      },
+      {
+        $sort: { date: 1, startTime: 1 }, // Sort by date and start time
+      },
+    ]);
+
+    res.json(slots);
+  } catch (error) {
+    console.error("Get slots error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+}
+
+exports.deleteSlotById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const slot = await Slot.findByIdAndDelete(id);
+    if (!slot) {
+      return res.status(404).json({ message: "Slot not found" });
+    }
+    res.json(slot);
+  } catch (error) {
+    console.error("Delete slot error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+module.exports = exports;

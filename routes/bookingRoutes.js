@@ -1,48 +1,77 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../middleware/authMiddleware");
+const {
+  authenticate,
+  authorizeAdmin,
+  authorizeRoles,
+} = require("../middleware/authMiddleware");
 const {
   createBooking,
+  createAdminBooking,
   myBookings,
   getAllBookings,
   cancelBooking,
+  getBookingsBySlot,
+  getBookingStats,
+  getBookingsBySlotAggregation
 } = require("../controllers/bookingController");
 const bookingController = require("../controllers/bookingController");
-const authMiddleware = require("../middleware/authMiddleware");
 const validate = require("../middleware/validate");
 const { bookingSchemas } = require("../validations/schemas");
 
-const { get } = require("mongoose");
-
-// router.post("/", auth, createBooking); // Create a new booking
-// router.get("/my-bookings", auth, myBookings); // Get bookings for logged-in user
-// router.get("/admin/all-bookings", auth, getAllBookings); // Admin: Get all bookings
-// router.delete("/cancel-booking/:bookingId", auth, cancelBooking); // Cancel a booking
-
-// Create booking - requires auth + customer + validation
+// Create booking - requires auth + patient + validation
 router.post(
   "/",
-  authMiddleware,
+  authenticate,
   validate(bookingSchemas.create),
   bookingController.createBooking,
 );
 
-// Get my bookings - requires auth + customer
-router.get("/my-bookings", authMiddleware, bookingController.myBookings);
+// Create admin booking - requires auth + admin
+router.post('/admin/bookings', authenticate, authorizeAdmin, createAdminBooking);
+
+// Get my bookings - requires auth + patient
+router.get("/my-bookings", authenticate, myBookings);
 
 // Get all bookings - requires auth + admin
 router.get(
   "/admin/all-bookings",
-  authMiddleware,
-  bookingController.getAllBookings,
+  authenticate,
+  authorizeAdmin,
+  getAllBookings,
 );
 
 // Cancel booking - requires auth + validation on params
 router.delete(
   "/cancel-booking/:bookingId",
-  authMiddleware,
+  authenticate,
   validate(bookingSchemas.cancel, "params"),
-  bookingController.cancelBooking,
+  cancelBooking,
 );
+
+router.get("/slots/:slotId",authenticate,authorizeAdmin,getBookingsBySlot)
+
+/**
+ * @route   GET /api/bookings/stats
+ * @desc    Get booking statistics
+ * @access  Private/Admin
+ */
+router.get('/stats', authenticate, authorizeAdmin, getBookingStats);
+
+router.get("/slot-agg/:slotId", authenticate, authorizeAdmin, getBookingsBySlotAggregation);
+
+/**
+ * @route   GET /api/bookings/patient/:patientId
+ * @desc    Get all bookings for a specific patient
+ * @access  Private/Admin
+ */
+router.get("/patient/:patientId", authenticate, authorizeAdmin, bookingController.getPatientBookings);
+
+/**
+ * @route   DELETE /api/bookings/patient/:patientId/cancel-all
+ * @desc    Cancel all future bookings for a patient 
+ * @access  Private/Admin
+ */
+router.delete("/patient/:patientId/cancel-all", authenticate, authorizeAdmin, bookingController.cancelAllPatientBookings);
 
 module.exports = router;

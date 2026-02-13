@@ -38,8 +38,8 @@ const authSchemas = {
         "any.required": "Password is required",
       }),
 
-    role: Joi.string().valid("customer", "admin").default("customer").messages({
-      "any.only": "Role must be either 'customer' or 'admin'",
+    role: Joi.string().valid("patient", "admin").default("patient").messages({
+      "any.only": "Role must be either 'patient' or 'admin'",
     }),
   }),
 
