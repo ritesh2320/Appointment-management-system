@@ -1,4 +1,230 @@
 const Patient = require("../models/patient");
+const Joi = require("joi");
+
+// ================== VALIDATION SCHEMAS ==================
+
+const createPatientSchema = Joi.object({
+  name: Joi.string().min(2).max(100).trim().required().messages({
+    "string.empty": "Name is required",
+    "string.min": "Name must be at least 2 characters long",
+    "string.max": "Name cannot exceed 100 characters",
+    "any.required": "Name is required",
+  }),
+
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .lowercase()
+    .trim()
+    .required()
+    .messages({
+      "string.empty": "Email is required",
+      "string.email": "Please provide a valid email address",
+      "any.required": "Email is required",
+    }),
+
+  phone: Joi.string()
+    .pattern(/^[0-9]{10,15}$/)
+    .optional()
+    .allow("")
+    .messages({
+      "string.pattern.base": "Phone must be between 10-15 digits",
+    }),
+
+  age: Joi.number().integer().min(0).max(150).optional().messages({
+    "number.base": "Age must be a number",
+    "number.min": "Age cannot be negative",
+    "number.max": "Age must be a realistic value (max 150)",
+    "number.integer": "Age must be a whole number",
+  }),
+
+  gender: Joi.string().valid("Male", "Female", "Other").optional().messages({
+    "any.only": "Gender must be Male, Female, or Other",
+  }),
+
+  bloodGroup: Joi.string()
+    .valid("A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-")
+    .optional()
+    .messages({
+      "any.only":
+        "Invalid blood group. Must be one of: A+, A-, B+, B-, O+, O-, AB+, AB-",
+    }),
+
+  address: Joi.object({
+    street: Joi.string().trim().optional().allow(""),
+    city: Joi.string().trim().optional().allow(""),
+    state: Joi.string().trim().optional().allow(""),
+    zipCode: Joi.string().trim().optional().allow(""),
+    country: Joi.string().trim().optional().allow(""),
+  }).optional(),
+
+  medicalHistory: Joi.array().items(Joi.string().trim()).optional().messages({
+    "array.base": "Medical history must be an array of strings",
+  }),
+
+  allergies: Joi.array().items(Joi.string().trim()).optional().messages({
+    "array.base": "Allergies must be an array of strings",
+  }),
+
+  emergencyContact: Joi.object({
+    name: Joi.string().trim().required().messages({
+      "string.empty": "Emergency contact name is required",
+      "any.required": "Emergency contact name is required",
+    }),
+    phone: Joi.string()
+      .pattern(/^[0-9]{10,15}$/)
+      .required()
+      .messages({
+        "string.pattern.base":
+          "Emergency contact phone must be between 10-15 digits",
+        "any.required": "Emergency contact phone is required",
+      }),
+    relation: Joi.string().trim().required().messages({
+      "string.empty": "Emergency contact relation is required",
+      "any.required": "Emergency contact relation is required",
+    }),
+  }).optional(),
+});
+
+const updatePatientSchema = Joi.object({
+  name: Joi.string().min(2).max(100).trim().optional().messages({
+    "string.min": "Name must be at least 2 characters long",
+    "string.max": "Name cannot exceed 100 characters",
+  }),
+
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .lowercase()
+    .trim()
+    .optional()
+    .messages({
+      "string.email": "Please provide a valid email address",
+    }),
+
+  phone: Joi.string()
+    .pattern(/^[0-9]{10,15}$/)
+    .optional()
+    .allow("")
+    .messages({
+      "string.pattern.base": "Phone must be between 10-15 digits",
+    }),
+
+  age: Joi.number().integer().min(0).max(150).optional().messages({
+    "number.base": "Age must be a number",
+    "number.min": "Age cannot be negative",
+    "number.max": "Age must be a realistic value (max 150)",
+    "number.integer": "Age must be a whole number",
+  }),
+
+  gender: Joi.string().valid("Male", "Female", "Other").optional().messages({
+    "any.only": "Gender must be Male, Female, or Other",
+  }),
+
+  bloodGroup: Joi.string()
+    .valid("A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-")
+    .optional()
+    .messages({
+      "any.only":
+        "Invalid blood group. Must be one of: A+, A-, B+, B-, O+, O-, AB+, AB-",
+    }),
+
+  address: Joi.object({
+    street: Joi.string().trim().optional().allow(""),
+    city: Joi.string().trim().optional().allow(""),
+    state: Joi.string().trim().optional().allow(""),
+    zipCode: Joi.string().trim().optional().allow(""),
+    country: Joi.string().trim().optional().allow(""),
+  }).optional(),
+
+  medicalHistory: Joi.array().items(Joi.string().trim()).optional().messages({
+    "array.base": "Medical history must be an array of strings",
+  }),
+
+  allergies: Joi.array().items(Joi.string().trim()).optional().messages({
+    "array.base": "Allergies must be an array of strings",
+  }),
+
+  emergencyContact: Joi.object({
+    name: Joi.string().trim().required().messages({
+      "string.empty": "Emergency contact name is required",
+      "any.required": "Emergency contact name is required",
+    }),
+    phone: Joi.string()
+      .pattern(/^[0-9]{10,15}$/)
+      .required()
+      .messages({
+        "string.pattern.base":
+          "Emergency contact phone must be between 10-15 digits",
+        "any.required": "Emergency contact phone is required",
+      }),
+    relation: Joi.string().trim().required().messages({
+      "string.empty": "Emergency contact relation is required",
+      "any.required": "Emergency contact relation is required",
+    }),
+  }).optional(),
+
+  isActive: Joi.boolean().optional(),
+})
+  .min(1)
+  .messages({
+    "object.min": "At least one field must be provided for update",
+  });
+
+const patientIdSchema = Joi.object({
+  patientId: Joi.string()
+    .pattern(/^[0-9a-fA-F]{24}$/)
+    .required()
+    .messages({
+      "string.pattern.base": "Invalid patient ID format",
+      "any.required": "Patient ID is required",
+    }),
+});
+
+const getAllPatientsQuerySchema = Joi.object({
+  page: Joi.number().integer().min(1).default(1).messages({
+    "number.base": "Page must be a number",
+    "number.min": "Page must be at least 1",
+    "number.integer": "Page must be a whole number",
+  }),
+
+  limit: Joi.number().integer().min(1).max(100).default(10).messages({
+    "number.base": "Limit must be a number",
+    "number.min": "Limit must be at least 1",
+    "number.max": "Limit cannot exceed 100",
+    "number.integer": "Limit must be a whole number",
+  }),
+
+  search: Joi.string().trim().max(100).optional().allow("").messages({
+    "string.max": "Search term cannot exceed 100 characters",
+  }),
+
+  gender: Joi.string().valid("Male", "Female", "Other").optional().messages({
+    "any.only": "Gender must be Male, Female, or Other",
+  }),
+
+  bloodGroup: Joi.string()
+    .valid("A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-")
+    .optional()
+    .messages({
+      "any.only": "Invalid blood group",
+    }),
+
+  isActive: Joi.string().valid("true", "false").optional().messages({
+    "any.only": "isActive must be 'true' or 'false'",
+  }),
+
+  sortBy: Joi.string()
+    .valid("name", "email", "createdAt", "age", "updatedAt")
+    .default("createdAt")
+    .messages({
+      "any.only": "Invalid sort field",
+    }),
+
+  sortOrder: Joi.string().valid("asc", "desc").default("desc").messages({
+    "any.only": "Sort order must be 'asc' or 'desc'",
+  }),
+});
+
+// ================== CONTROLLER FUNCTIONS ==================
 
 /**
  * @desc    Create new patient
@@ -7,6 +233,20 @@ const Patient = require("../models/patient");
  */
 const createPatient = async (req, res, next) => {
   try {
+    // Validate request body
+    const { error, value } = createPatientSchema.validate(req.body, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
+
+    if (error) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: error.details.map((detail) => detail.message),
+      });
+    }
+
     const {
       name,
       email,
@@ -18,7 +258,7 @@ const createPatient = async (req, res, next) => {
       medicalHistory,
       allergies,
       emergencyContact,
-    } = req.body;
+    } = value;
 
     // Check if patient with email already exists
     const existingPatient = await Patient.findOne({ email });
@@ -66,16 +306,22 @@ const createPatient = async (req, res, next) => {
  */
 const getAllPatients = async (req, res, next) => {
   try {
-    const {
-      page = 1,
-      limit = 10,
-      search,
-      gender,
-      bloodGroup,
-      isActive,
-      sortBy = "createdAt",
-      sortOrder = "desc",
-    } = req.query;
+    // Validate query parameters
+    const { error, value } = getAllPatientsQuerySchema.validate(req.query, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
+
+    if (error) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: error.details.map((detail) => detail.message),
+      });
+    }
+
+    const { page, limit, search, gender, bloodGroup, isActive, sortBy, sortOrder } =
+      value;
 
     // Build query
     const query = {};
@@ -147,7 +393,20 @@ const getAllPatients = async (req, res, next) => {
  */
 const getPatientById = async (req, res, next) => {
   try {
-    const { patientId } = req.params;
+    // Validate patient ID
+    const { error, value } = patientIdSchema.validate(req.params, {
+      abortEarly: false,
+    });
+
+    if (error) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: error.details.map((detail) => detail.message),
+      });
+    }
+
+    const { patientId } = value;
 
     const patient = await Patient.findById(patientId)
       .populate("createdBy", "name email")
@@ -181,20 +440,47 @@ const getPatientById = async (req, res, next) => {
  */
 const updatePatient = async (req, res, next) => {
   try {
-    const { patientId } = req.params;
-    const updateData = req.body;
+    // Validate patient ID
+    const { error: idError, value: idValue } = patientIdSchema.validate(
+      req.params,
+      {
+        abortEarly: false,
+      }
+    );
+
+    if (idError) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: idError.details.map((detail) => detail.message),
+      });
+    }
+
+    // Validate request body
+    const { error: bodyError, value: bodyValue } =
+      updatePatientSchema.validate(req.body, {
+        abortEarly: false,
+        stripUnknown: true,
+      });
+
+    if (bodyError) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: bodyError.details.map((detail) => detail.message),
+      });
+    }
+
+    const { patientId } = idValue;
+    const updateData = bodyValue;
 
     // Add updatedBy field
     updateData.updatedBy = req.user.id;
 
-    const patient = await Patient.findByIdAndUpdate(
-      patientId,
-      updateData,
-      {
-        new: true, // Return updated document
-        runValidators: true, // Run schema validators
-      }
-    );
+    const patient = await Patient.findByIdAndUpdate(patientId, updateData, {
+      new: true, // Return updated document
+      runValidators: true, // Run schema validators
+    });
 
     if (!patient) {
       return res.status(404).json({
@@ -225,13 +511,26 @@ const updatePatient = async (req, res, next) => {
  */
 const deletePatient = async (req, res, next) => {
   try {
-    const { patientId } = req.params;
+    // Validate patient ID
+    const { error, value } = patientIdSchema.validate(req.params, {
+      abortEarly: false,
+    });
+
+    if (error) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: error.details.map((detail) => detail.message),
+      });
+    }
+
+    const { patientId } = value;
 
     const patient = await Patient.findByIdAndUpdate(
       patientId,
-      { 
+      {
         isActive: false,
-        updatedBy: req.user.id
+        updatedBy: req.user.id,
       },
       { new: true }
     );
@@ -265,13 +564,26 @@ const deletePatient = async (req, res, next) => {
  */
 const restorePatient = async (req, res, next) => {
   try {
-    const { patientId } = req.params;
+    // Validate patient ID
+    const { error, value } = patientIdSchema.validate(req.params, {
+      abortEarly: false,
+    });
+
+    if (error) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: error.details.map((detail) => detail.message),
+      });
+    }
+
+    const { patientId } = value;
 
     const patient = await Patient.findByIdAndUpdate(
       patientId,
-      { 
+      {
         isActive: true,
-        updatedBy: req.user.id
+        updatedBy: req.user.id,
       },
       { new: true }
     );
@@ -305,7 +617,20 @@ const restorePatient = async (req, res, next) => {
  */
 const permanentDeletePatient = async (req, res, next) => {
   try {
-    const { patientId } = req.params;
+    // Validate patient ID
+    const { error, value } = patientIdSchema.validate(req.params, {
+      abortEarly: false,
+    });
+
+    if (error) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: error.details.map((detail) => detail.message),
+      });
+    }
+
+    const { patientId } = value;
 
     const patient = await Patient.findByIdAndDelete(patientId);
 
@@ -347,47 +672,41 @@ const getPatientStats = async (req, res, next) => {
     console.log("30 days ago:", thirtyDaysAgo);
 
     // Current stats
-    const [
-      total,
-      active,
-      inactive,
-      maleCount,
-      femaleCount,
-      otherCount,
-    ] = await Promise.all([
-      Patient.countDocuments(),
-      Patient.countDocuments({ isActive: true }),
-      Patient.countDocuments({ isActive: false }),
-      Patient.countDocuments({ gender: "Male", isActive: true }),
-      Patient.countDocuments({ gender: "Female", isActive: true }),
-      Patient.countDocuments({ gender: "Other", isActive: true }),
-    ]);
+    const [total, active, inactive, maleCount, femaleCount, otherCount] =
+      await Promise.all([
+        Patient.countDocuments(),
+        Patient.countDocuments({ isActive: true }),
+        Patient.countDocuments({ isActive: false }),
+        Patient.countDocuments({ gender: "Male", isActive: true }),
+        Patient.countDocuments({ gender: "Female", isActive: true }),
+        Patient.countDocuments({ gender: "Other", isActive: true }),
+      ]);
 
     console.log("Current stats:", { total, active, inactive });
 
     // Previous period stats (30 days ago)
-    const [
+    const [totalPrevious, activePrevious, inactivePrevious] =
+      await Promise.all([
+        Patient.countDocuments({ createdAt: { $lt: thirtyDaysAgo } }),
+        Patient.countDocuments({
+          isActive: true,
+          createdAt: { $lt: thirtyDaysAgo },
+        }),
+        Patient.countDocuments({
+          isActive: false,
+          createdAt: { $lt: thirtyDaysAgo },
+        }),
+      ]);
+
+    console.log("Previous stats:", {
       totalPrevious,
       activePrevious,
       inactivePrevious,
-    ] = await Promise.all([
-      Patient.countDocuments({ createdAt: { $lt: thirtyDaysAgo } }),
-      Patient.countDocuments({ 
-        isActive: true, 
-        createdAt: { $lt: thirtyDaysAgo } 
-      }),
-      Patient.countDocuments({ 
-        isActive: false, 
-        createdAt: { $lt: thirtyDaysAgo } 
-      }),
-    ]);
-
-    console.log("Previous stats:", { totalPrevious, activePrevious, inactivePrevious });
+    });
 
     // Calculate percentage changes
     const calculatePercentageChange = (current, previous) => {
       if (previous === 0) {
-        // If there were no patients before, return 100 if we have patients now, 0 otherwise
         return current > 0 ? 100 : 0;
       }
       return Math.round(((current - previous) / previous) * 100);
@@ -395,9 +714,16 @@ const getPatientStats = async (req, res, next) => {
 
     const totalChange = calculatePercentageChange(total, totalPrevious);
     const activeChange = calculatePercentageChange(active, activePrevious);
-    const inactiveChange = calculatePercentageChange(inactive, inactivePrevious);
+    const inactiveChange = calculatePercentageChange(
+      inactive,
+      inactivePrevious
+    );
 
-    console.log("Percentage changes:", { totalChange, activeChange, inactiveChange });
+    console.log("Percentage changes:", {
+      totalChange,
+      activeChange,
+      inactiveChange,
+    });
 
     // Age categories
     const ageStats = await Patient.aggregate([
@@ -464,8 +790,6 @@ const getPatientStats = async (req, res, next) => {
     });
   }
 };
-
-
 
 module.exports = {
   createPatient,
