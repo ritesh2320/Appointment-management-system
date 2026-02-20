@@ -27,6 +27,26 @@ const bookingSchema = new mongoose.Schema(
       enum: ["confirmed", "cancelled", "completed"],
       default: "confirmed",
     },
+
+    tokenNumber: {
+      type: Number, // 1, 2, 3... 20
+      required: true,
+    },
+
+    tokenId: {
+      type: String, // "T-01", "T-02"... "T-20"
+      required: true,
+    },
+
+    appointmentTime: {
+      type: String, // "07:40", "07:46", "07:52"...
+      required: true,
+    },
+
+    appointmentEndTime: {
+      type: String, // "07:46", "07:52"...
+      required: true,
+    },
   },
   {
     timestamps: true,

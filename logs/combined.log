@@ -1804,3 +1804,90 @@
 [2026-02-20T03:52:18.169Z] [INFO]: Server running on port 8080 in development mode 
 [2026-02-20T03:52:18.193Z] [INFO]: MongoDB Connected 
 [2026-02-20T03:52:18.231Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:08:33.702Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:08:33.723Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:08:33.751Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:33:16.158Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:33:16.180Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:33:16.211Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:33:22.332Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:33:22.354Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:33:22.387Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:33:30.101Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:33:30.123Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:33:30.153Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:33:44.237Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:33:44.256Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:33:44.285Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:52:37.053Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:52:37.081Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:52:37.117Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:53:24.873Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:53:24.902Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:53:24.936Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:53:43.711Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:53:43.730Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:53:43.758Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:53:48.259Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:53:48.279Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:53:48.310Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:55:44.270Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:55:44.293Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:55:44.326Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:56:48.723Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:56:48.747Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:56:48.776Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:59:48.135Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:59:48.161Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:59:48.194Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T04:59:51.734Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T04:59:51.761Z] [INFO]: MongoDB Connected 
+[2026-02-20T04:59:51.791Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:00:11.380Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:00:11.402Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:00:11.428Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:00:20.946Z] [ERROR]: Error: This patient already booked this slot {"stack":"Error: This patient already booked this slot\n    at exports.createBooking (E:\\Uttirna\\Backend\\controllers\\bookingController.js:860:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)","path":"/api/bookings","method":"POST"}
+[2026-02-20T05:00:30.591Z] [ERROR]: Error: Login failed {"stack":"Error: Login failed\n    at exports.login (E:\\Uttirna\\Backend\\controllers\\authController.js:121:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)","path":"/api/auth/login","method":"POST"}
+[2026-02-20T05:50:34.316Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:50:34.342Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:50:34.367Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:52:30.346Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:52:30.366Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:52:30.395Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:53:46.976Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:53:46.999Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:53:47.040Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:54:28.989Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:54:29.016Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:54:29.046Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:54:57.916Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:54:57.940Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:54:57.969Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:55:17.552Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:55:17.571Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:55:17.600Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:56:09.647Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:56:09.668Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:56:09.694Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:57:04.624Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:57:04.644Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:57:04.672Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:57:16.511Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:57:16.533Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:57:16.560Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:57:49.734Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:57:49.756Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:57:49.793Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:58:05.178Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:58:05.204Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:58:05.230Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:59:49.654Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:59:49.688Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:59:49.720Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T05:59:58.843Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T05:59:58.872Z] [INFO]: MongoDB Connected 
+[2026-02-20T05:59:58.902Z] [INFO]: Booking indexes synchronized 
+[2026-02-20T06:01:35.193Z] [ERROR]: Error: Unexpected non-whitespace character after JSON at position 78 (line 14 column 1) {"stack":"SyntaxError: Unexpected non-whitespace character after JSON at position 78 (line 14 column 1)\n    at JSON.parse (<anonymous>)\n    at parse (E:\\Uttirna\\Backend\\node_modules\\body-parser\\lib\\types\\json.js:72:19)\n    at E:\\Uttirna\\Backend\\node_modules\\body-parser\\lib\\read.js:162:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)\n    at invokeCallback (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:238:16)\n    at done (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:227:7)\n    at IncomingMessage.onEnd (E:\\Uttirna\\Backend\\node_modules\\raw-body\\index.js:287:7)\n    at IncomingMessage.emit (node:events:508:28)\n    at endReadableNT (node:internal/streams/readable:1701:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)","path":"/api/auth/login","method":"POST"}
+[2026-02-20T06:30:26.038Z] [INFO]: Server running on port 8080 in development mode 
+[2026-02-20T06:30:26.056Z] [INFO]: MongoDB Connected 
+[2026-02-20T06:30:26.085Z] [INFO]: Booking indexes synchronized 

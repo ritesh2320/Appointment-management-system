@@ -139,3 +139,17 @@ exports.logout = (req, res) => {
       throw new ApiError(500,"Logout failed",err);
   }
 };
+
+
+exports.getAuthDetails = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new ApiError(404,"User not found");
+    }
+    return res.json(user);
+  } catch (err) {
+    throw new ApiError(500,"Failed to get user details",err);
+  }
+};

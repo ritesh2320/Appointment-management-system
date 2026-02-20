@@ -757,7 +757,75 @@ const logger = require("../utils/logger");
 const ApiError = require("../config/ApiError");
 const { createBookingSchema, bookingIdSchema } = require("../validations/bookingValidations");
 
+
+// helper function
+
+const addMinutes = (time, mins) => {
+  const [h, m] = time.split(":").map(Number);
+  const total = h * 60 + m + mins;
+  const newH = Math.floor(total / 60) % 24;
+  const newM = total % 60;
+  return `${String(newH).padStart(2, "0")}:${String(newM).padStart(2, "0")}`;
+};
+
 // ── Create Booking (Patient or Admin) ─────────────────────────────────────
+
+// exports.createBooking = async (req, res, next) => {
+//   try {
+//     const { error, value } = createBookingSchema.validate(req.body, {
+//       abortEarly: false,
+//       stripUnknown: true,
+//     });
+
+//     if (error) {
+//       throw new ApiError(400, "Validation failed", error.details.map(d => d.message));
+//     }
+
+//     const { slotId, patientId } = value;
+
+//     const slot = await Slot.findById(slotId);
+//     if (!slot || !slot.isActive) throw new ApiError(400, "Slot unavailable");
+//     if (slot.bookedSeats >= slot.maxSeats) throw new ApiError(400, "Slot full");
+
+//     let finalPatientId;
+//     if (req.user.role === "patient") {
+//       finalPatientId = req.user.id;
+//     } else if (req.user.role === "admin") {
+//       if (!patientId) throw new ApiError(400, "Patient ID required for admin booking");
+//       finalPatientId = patientId;
+//     }
+
+//     const existingBooking = await Booking.findOne({
+//       patientId: finalPatientId,
+//       slotId,
+//       status: { $ne: "cancelled" },
+//     });
+
+//     if (existingBooking) throw new ApiError(400, "This patient already booked this slot");
+
+//     const updatedSlot = await Slot.findOneAndUpdate(
+//       { _id: slotId, bookedSeats: { $lt: slot.maxSeats } },
+//       { $inc: { bookedSeats: 1 } },
+//       { new: true }
+//     );
+
+//     if (!updatedSlot) throw new ApiError(400, "Slot full");
+
+//     const booking = await Booking.create({
+//       userId: req.user.id,
+//       patientId: finalPatientId,
+//       slotId,
+//       bookingDate: slot.date,
+//     });
+
+//     await booking.populate(["slotId", "patientId"]);
+
+//     return res.status(201).json(booking);
+
+//   } catch (err) {
+//     next(err instanceof ApiError ? err : new ApiError(500, "Server error", err.message));
+//   }
+// };
 
 exports.createBooking = async (req, res, next) => {
   try {
@@ -789,22 +857,43 @@ exports.createBooking = async (req, res, next) => {
       slotId,
       status: { $ne: "cancelled" },
     });
-
     if (existingBooking) throw new ApiError(400, "This patient already booked this slot");
 
+    // ── Atomic seat increment ─────────────────────────────────────────
     const updatedSlot = await Slot.findOneAndUpdate(
       { _id: slotId, bookedSeats: { $lt: slot.maxSeats } },
       { $inc: { bookedSeats: 1 } },
       { new: true }
     );
-
     if (!updatedSlot) throw new ApiError(400, "Slot full");
 
+    // ── Calculate token & appointment time ───────────────────────────
+    const tokenNumber = updatedSlot.bookedSeats; // 1-based after increment
+
+    const tokenId = `T-${String(tokenNumber).padStart(2, "0")}`;
+
+    // Calculate mins per patient
+    const parseTime = (t) => {
+      const [h, m] = t.split(":").map(Number);
+      return h * 60 + m;
+    };
+    const totalMins = parseTime(slot.endTime) - parseTime(slot.startTime);
+    const minsPerPatient = Math.floor(totalMins / slot.maxSeats); // 6 mins
+
+    // Appointment start = slotStartTime + (tokenNumber - 1) * minsPerPatient
+    const appointmentTime = addMinutes(slot.startTime, (tokenNumber - 1) * minsPerPatient);
+    const appointmentEndTime = addMinutes(appointmentTime, minsPerPatient);
+
+    // ── Create booking ────────────────────────────────────────────────
     const booking = await Booking.create({
       userId: req.user.id,
       patientId: finalPatientId,
       slotId,
       bookingDate: slot.date,
+      tokenNumber,
+      tokenId,
+      appointmentTime,       // "07:40"
+      appointmentEndTime,    // "07:46"
     });
 
     await booking.populate(["slotId", "patientId"]);
