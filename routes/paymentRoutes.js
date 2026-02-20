@@ -1,40 +1,68 @@
 const express = require("express");
 const router = express.Router();
-const paymentController = require("../controllers/paymentController");
+const { createPaymentIntent, verifyPayment, getMyPayments, getAllPayments, refundPayment, getPaymentStatus } = require("../controllers/paymentController");
 const {
   authenticate,
   authorizeAdmin,
 } = require("../middleware/authMiddleware");
+const rateLimit = require("express-rate-limit");
 
-// Create payment intent (Razorpay)
+// Rate limiter for payment creation — prevents abuse (max 10 attempts per 15 min per IP)
+const paymentRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: { message: "Too many payment requests. Please try again later." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// ─── Patient Routes ───────────────────────────────────────────────
+
+// Create Razorpay order
 router.post(
   "/create-intent",
   authenticate,
-  paymentController.createPaymentIntent,
+  paymentRateLimiter,
+ createPaymentIntent
 );
 
-// Verify payment and create booking
-router.post("/verify", authenticate, paymentController.verifyPayment);
+// Verify payment & confirm booking
+router.post(
+  "/verify",
+  authenticate,
+  paymentRateLimiter,
+  verifyPayment
+);
 
-// Get my payments (patient) - must come before /:paymentIntentId to avoid route conflicts
-router.get("/my/list", authenticate, paymentController.getMyPayments);
+// Get logged-in patient's payment history
+// NOTE: defined before /:paymentIntentId to avoid route conflict
+router.get("/my/list", authenticate, getMyPayments);
 
-// Get all payments (admin)
-router.get("/admin/all", authenticate, authorizeAdmin, paymentController.getAllPayments);
+// ─── Admin Routes ─────────────────────────────────────────────────
 
-// Get payment status
+// Get all payments
+router.get(
+  "/admin/all",
+  authenticate,
+  authorizeAdmin,
+  getAllPayments
+);
+
+// Refund a payment
+router.post(
+  "/admin/:paymentId/refund",
+  authenticate,
+  authorizeAdmin,
+  refundPayment
+);
+
+// ─── Shared Routes ────────────────────────────────────────────────
+
+// Get payment status by Razorpay order ID (patient sees own, admin sees all)
 router.get(
   "/:paymentIntentId",
   authenticate,
-  paymentController.getPaymentStatus,
-);
-
-// Refund payment (admin)
-router.post(
-  "/:paymentId/refund",
-  authenticate,
-  authorizeAdmin,
-  paymentController.refundPayment,
+  getPaymentStatus
 );
 
 module.exports = router;

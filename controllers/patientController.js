@@ -1,228 +1,7 @@
 const Patient = require("../models/patient");
-const Joi = require("joi");
+const { validate } = require("../middleware/validate");
+const { createPatientSchema, updatePatientSchema, patientIdSchema, queryPatientSchema, getAllPatientsQuerySchema } = require("../validations/patientValidations");
 
-// ================== VALIDATION SCHEMAS ==================
-
-const createPatientSchema = Joi.object({
-  name: Joi.string().min(2).max(100).trim().required().messages({
-    "string.empty": "Name is required",
-    "string.min": "Name must be at least 2 characters long",
-    "string.max": "Name cannot exceed 100 characters",
-    "any.required": "Name is required",
-  }),
-
-  email: Joi.string()
-    .email({ tlds: { allow: false } })
-    .lowercase()
-    .trim()
-    .required()
-    .messages({
-      "string.empty": "Email is required",
-      "string.email": "Please provide a valid email address",
-      "any.required": "Email is required",
-    }),
-
-  phone: Joi.string()
-    .pattern(/^[0-9]{10,15}$/)
-    .optional()
-    .allow("")
-    .messages({
-      "string.pattern.base": "Phone must be between 10-15 digits",
-    }),
-
-  age: Joi.number().integer().min(0).max(150).optional().messages({
-    "number.base": "Age must be a number",
-    "number.min": "Age cannot be negative",
-    "number.max": "Age must be a realistic value (max 150)",
-    "number.integer": "Age must be a whole number",
-  }),
-
-  gender: Joi.string().valid("Male", "Female", "Other").optional().messages({
-    "any.only": "Gender must be Male, Female, or Other",
-  }),
-
-  bloodGroup: Joi.string()
-    .valid("A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-")
-    .optional()
-    .messages({
-      "any.only":
-        "Invalid blood group. Must be one of: A+, A-, B+, B-, O+, O-, AB+, AB-",
-    }),
-
-  address: Joi.object({
-    street: Joi.string().trim().optional().allow(""),
-    city: Joi.string().trim().optional().allow(""),
-    state: Joi.string().trim().optional().allow(""),
-    zipCode: Joi.string().trim().optional().allow(""),
-    country: Joi.string().trim().optional().allow(""),
-  }).optional(),
-
-  medicalHistory: Joi.array().items(Joi.string().trim()).optional().messages({
-    "array.base": "Medical history must be an array of strings",
-  }),
-
-  allergies: Joi.array().items(Joi.string().trim()).optional().messages({
-    "array.base": "Allergies must be an array of strings",
-  }),
-
-  emergencyContact: Joi.object({
-    name: Joi.string().trim().required().messages({
-      "string.empty": "Emergency contact name is required",
-      "any.required": "Emergency contact name is required",
-    }),
-    phone: Joi.string()
-      .pattern(/^[0-9]{10,15}$/)
-      .required()
-      .messages({
-        "string.pattern.base":
-          "Emergency contact phone must be between 10-15 digits",
-        "any.required": "Emergency contact phone is required",
-      }),
-    relation: Joi.string().trim().required().messages({
-      "string.empty": "Emergency contact relation is required",
-      "any.required": "Emergency contact relation is required",
-    }),
-  }).optional(),
-});
-
-const updatePatientSchema = Joi.object({
-  name: Joi.string().min(2).max(100).trim().optional().messages({
-    "string.min": "Name must be at least 2 characters long",
-    "string.max": "Name cannot exceed 100 characters",
-  }),
-
-  email: Joi.string()
-    .email({ tlds: { allow: false } })
-    .lowercase()
-    .trim()
-    .optional()
-    .messages({
-      "string.email": "Please provide a valid email address",
-    }),
-
-  phone: Joi.string()
-    .pattern(/^[0-9]{10,15}$/)
-    .optional()
-    .allow("")
-    .messages({
-      "string.pattern.base": "Phone must be between 10-15 digits",
-    }),
-
-  age: Joi.number().integer().min(0).max(150).optional().messages({
-    "number.base": "Age must be a number",
-    "number.min": "Age cannot be negative",
-    "number.max": "Age must be a realistic value (max 150)",
-    "number.integer": "Age must be a whole number",
-  }),
-
-  gender: Joi.string().valid("Male", "Female", "Other").optional().messages({
-    "any.only": "Gender must be Male, Female, or Other",
-  }),
-
-  bloodGroup: Joi.string()
-    .valid("A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-")
-    .optional()
-    .messages({
-      "any.only":
-        "Invalid blood group. Must be one of: A+, A-, B+, B-, O+, O-, AB+, AB-",
-    }),
-
-  address: Joi.object({
-    street: Joi.string().trim().optional().allow(""),
-    city: Joi.string().trim().optional().allow(""),
-    state: Joi.string().trim().optional().allow(""),
-    zipCode: Joi.string().trim().optional().allow(""),
-    country: Joi.string().trim().optional().allow(""),
-  }).optional(),
-
-  medicalHistory: Joi.array().items(Joi.string().trim()).optional().messages({
-    "array.base": "Medical history must be an array of strings",
-  }),
-
-  allergies: Joi.array().items(Joi.string().trim()).optional().messages({
-    "array.base": "Allergies must be an array of strings",
-  }),
-
-  emergencyContact: Joi.object({
-    name: Joi.string().trim().required().messages({
-      "string.empty": "Emergency contact name is required",
-      "any.required": "Emergency contact name is required",
-    }),
-    phone: Joi.string()
-      .pattern(/^[0-9]{10,15}$/)
-      .required()
-      .messages({
-        "string.pattern.base":
-          "Emergency contact phone must be between 10-15 digits",
-        "any.required": "Emergency contact phone is required",
-      }),
-    relation: Joi.string().trim().required().messages({
-      "string.empty": "Emergency contact relation is required",
-      "any.required": "Emergency contact relation is required",
-    }),
-  }).optional(),
-
-  isActive: Joi.boolean().optional(),
-})
-  .min(1)
-  .messages({
-    "object.min": "At least one field must be provided for update",
-  });
-
-const patientIdSchema = Joi.object({
-  patientId: Joi.string()
-    .pattern(/^[0-9a-fA-F]{24}$/)
-    .required()
-    .messages({
-      "string.pattern.base": "Invalid patient ID format",
-      "any.required": "Patient ID is required",
-    }),
-});
-
-const getAllPatientsQuerySchema = Joi.object({
-  page: Joi.number().integer().min(1).default(1).messages({
-    "number.base": "Page must be a number",
-    "number.min": "Page must be at least 1",
-    "number.integer": "Page must be a whole number",
-  }),
-
-  limit: Joi.number().integer().min(1).max(100).default(10).messages({
-    "number.base": "Limit must be a number",
-    "number.min": "Limit must be at least 1",
-    "number.max": "Limit cannot exceed 100",
-    "number.integer": "Limit must be a whole number",
-  }),
-
-  search: Joi.string().trim().max(100).optional().allow("").messages({
-    "string.max": "Search term cannot exceed 100 characters",
-  }),
-
-  gender: Joi.string().valid("Male", "Female", "Other").optional().messages({
-    "any.only": "Gender must be Male, Female, or Other",
-  }),
-
-  bloodGroup: Joi.string()
-    .valid("A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-")
-    .optional()
-    .messages({
-      "any.only": "Invalid blood group",
-    }),
-
-  isActive: Joi.string().valid("true", "false").optional().messages({
-    "any.only": "isActive must be 'true' or 'false'",
-  }),
-
-  sortBy: Joi.string()
-    .valid("name", "email", "createdAt", "age", "updatedAt")
-    .default("createdAt")
-    .messages({
-      "any.only": "Invalid sort field",
-    }),
-
-  sortOrder: Joi.string().valid("asc", "desc").default("desc").messages({
-    "any.only": "Sort order must be 'asc' or 'desc'",
-  }),
-});
 
 // ================== CONTROLLER FUNCTIONS ==================
 
@@ -320,8 +99,16 @@ const getAllPatients = async (req, res, next) => {
       });
     }
 
-    const { page, limit, search, gender, bloodGroup, isActive, sortBy, sortOrder } =
-      value;
+    const {
+      page,
+      limit,
+      search,
+      gender,
+      bloodGroup,
+      isActive,
+      sortBy,
+      sortOrder,
+    } = value;
 
     // Build query
     const query = {};
@@ -445,7 +232,7 @@ const updatePatient = async (req, res, next) => {
       req.params,
       {
         abortEarly: false,
-      }
+      },
     );
 
     if (idError) {
@@ -457,11 +244,13 @@ const updatePatient = async (req, res, next) => {
     }
 
     // Validate request body
-    const { error: bodyError, value: bodyValue } =
-      updatePatientSchema.validate(req.body, {
+    const { error: bodyError, value: bodyValue } = updatePatientSchema.validate(
+      req.body,
+      {
         abortEarly: false,
         stripUnknown: true,
-      });
+      },
+    );
 
     if (bodyError) {
       return res.status(400).json({
@@ -532,7 +321,7 @@ const deletePatient = async (req, res, next) => {
         isActive: false,
         updatedBy: req.user.id,
       },
-      { new: true }
+      { new: true },
     );
 
     if (!patient) {
@@ -585,7 +374,7 @@ const restorePatient = async (req, res, next) => {
         isActive: true,
         updatedBy: req.user.id,
       },
-      { new: true }
+      { new: true },
     );
 
     if (!patient) {
@@ -667,9 +456,9 @@ const getPatientStats = async (req, res, next) => {
     const now = new Date();
     const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
-    console.log("Fetching patient stats...");
-    console.log("Current date:", now);
-    console.log("30 days ago:", thirtyDaysAgo);
+    // console.log("Fetching patient stats...");
+    // console.log("Current date:", now);
+    // console.log("30 days ago:", thirtyDaysAgo);
 
     // Current stats
     const [total, active, inactive, maleCount, femaleCount, otherCount] =
@@ -685,8 +474,8 @@ const getPatientStats = async (req, res, next) => {
     console.log("Current stats:", { total, active, inactive });
 
     // Previous period stats (30 days ago)
-    const [totalPrevious, activePrevious, inactivePrevious] =
-      await Promise.all([
+    const [totalPrevious, activePrevious, inactivePrevious] = await Promise.all(
+      [
         Patient.countDocuments({ createdAt: { $lt: thirtyDaysAgo } }),
         Patient.countDocuments({
           isActive: true,
@@ -696,7 +485,8 @@ const getPatientStats = async (req, res, next) => {
           isActive: false,
           createdAt: { $lt: thirtyDaysAgo },
         }),
-      ]);
+      ],
+    );
 
     console.log("Previous stats:", {
       totalPrevious,
@@ -716,7 +506,7 @@ const getPatientStats = async (req, res, next) => {
     const activeChange = calculatePercentageChange(active, activePrevious);
     const inactiveChange = calculatePercentageChange(
       inactive,
-      inactivePrevious
+      inactivePrevious,
     );
 
     console.log("Percentage changes:", {
@@ -775,7 +565,7 @@ const getPatientStats = async (req, res, next) => {
       },
     };
 
-    console.log("Sending response:", responseData);
+    // console.log("Sending response:", responseData);
 
     res.status(200).json({
       success: true,

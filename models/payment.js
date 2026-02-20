@@ -25,20 +25,28 @@ const paymentSchema = new mongoose.Schema(
     currency: {
       type: String,
       required: true,
-      enum: ["USD", "INR", "EUR", "GBP"],
-      default: "USD",
+      enum: ["INR"],
+      default: "INR",
     },
     paymentMethod: {
       type: String,
       required: true,
-      enum: ["stripe", "razorpay"],
+      enum: ["razorpay"],
+      default: "razorpay",
     },
+    // Razorpay order ID (created before checkout opens)
     paymentIntentId: {
       type: String,
       required: true,
-      // unique: true,
+      unique: true,
     },
+    // Razorpay payment ID (returned after successful checkout)
     razorpayPaymentId: {
+      type: String,
+      default: null,
+    },
+    // Razorpay signature (stored for audit trail)
+    razorpaySignature: {
       type: String,
       default: null,
     },
@@ -56,6 +64,11 @@ const paymentSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
+    refundAmount: {
+      type: Number,
+      default: null,
+      min: 0,
+    },
     paidAt: {
       type: Date,
       default: null,
@@ -64,6 +77,7 @@ const paymentSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    // Optional extra info (e.g. slot date/time snapshot at time of payment)
     metadata: {
       type: mongoose.Schema.Types.Mixed,
       default: {},
@@ -71,13 +85,15 @@ const paymentSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
 // Indexes for faster queries
 paymentSchema.index({ userId: 1, status: 1 });
-paymentSchema.index({ paymentIntentId: 1 });
+// paymentSchema.index({ paymentIntentId: 1 });
+paymentSchema.index({ razorpayPaymentId: 1 });
 paymentSchema.index({ status: 1 });
+paymentSchema.index({ refundStatus: 1 });
 paymentSchema.index({ createdAt: -1 });
 
-module.exports = mongoose.model("Payment", paymentSchema);
+module.exports = mongoose.model("Payment", paymentSchema);  

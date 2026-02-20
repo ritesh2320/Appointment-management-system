@@ -2,101 +2,11 @@ const User = require("../models/user");
 const Patient = require("../models/patient");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const Joi = require("joi");
 const { JWT_SECRET } = require("../config/jwt");
+const { registerSchema, loginSchema } = require("../validations/authValidations");
+const ApiError = require("../config/ApiError");
 
-// Validation schemas
-const registerSchema = Joi.object({
-  name: Joi.string().min(2).max(50).trim().required().messages({
-    "string.empty": "Name is required",
-    "string.min": "Name must be at least 2 characters long",
-    "string.max": "Name cannot exceed 50 characters",
-    "any.required": "Name is required",
-  }),
-
-  email: Joi.string()
-    .email({ tlds: { allow: false } })
-    .lowercase()
-    .trim()
-    .required()
-    .messages({
-      "string.empty": "Email is required",
-      "string.email": "Please provide a valid email address",
-      "any.required": "Email is required",
-    }),
-
-  password: Joi.string().min(6).max(128).required().messages({
-    "string.empty": "Password is required",
-    "string.min": "Password must be at least 6 characters long",
-    "string.max": "Password cannot exceed 128 characters",
-    "any.required": "Password is required",
-  }),
-
-  role: Joi.string().valid("patient", "admin").default("patient").messages({
-    "any.only": "Role must be either 'patient' or 'admin'",
-  }),
-});
-
-const loginSchema = Joi.object({
-  email: Joi.string()
-    .email({ tlds: { allow: false } })
-    .lowercase()
-    .trim()
-    .required()
-    .messages({
-      "string.empty": "Email is required",
-      "string.email": "Please provide a valid email address",
-      "any.required": "Email is required",
-    }),
-
-  password: Joi.string().required().messages({
-    "string.empty": "Password is required",
-    "any.required": "Password is required",
-  }),
-});
-
-// Register handler
-// exports.register = async (req, res) => {
-//   try {
-//     // Validate request body
-//     const { error, value } = registerSchema.validate(req.body, {
-//       abortEarly: false, // Return all errors, not just the first one
-//       stripUnknown: true, // Remove unknown fields
-//     });
-
-//     if (error) {
-//       const errors = error.details.map((detail) => detail.message);
-//       return res.status(400).json({
-//         message: "Validation failed",
-//         errors: errors,
-//       });
-//     }
-
-//     const { name, email, password, role } = value;
-
-//     // Check if user already exists
-//     const exists = await User.findOne({ email });
-//     if (exists) {
-//       return res.status(400).json({ message: "User already exists" });
-//     }
-
-//     // Hash password
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     // Create user
-//     await User.create({
-//       name,
-//       email,
-//       password: hashedPassword,
-//       role: role || "patient",
-//     });
-
-//     res.status(201).json({ message: "Registered successfully" });
-//   } catch (err) {
-//     console.error("Register error:", err);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
+//  Register
 
 exports.register = async (req, res) => {
   try {
@@ -104,89 +14,83 @@ exports.register = async (req, res) => {
     const { error, value } = registerSchema.validate(req.body, {
       abortEarly: false,
       stripUnknown: true,
+      convert: true
     });
 
     if (error) {
-      return res.status(400).json({
-        message: "Validation failed",
-        errors: error.details.map((detail) => detail.message),
-      });
+      // console.log("Validation errors:", JSON.stringify(error.details, null, 2));
+      throw new ApiError(400,"Validation failed",error);
     }
 
-    const { name, email, password, role } = value;
+    const { name, email, password, phone, age, gender, bloodGroup } = value;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({
-        message: "User already exists",
-      });
+      throw new ApiError(400,"User already exists");
     }
 
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
+    // Create user with all profile fields
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
-      role: role || "patient", // default role
+      phone,
+      age,
+      gender,
+      bloodGroup,
+      role: "patient",
     });
 
-    // 🔥 Auto-create patient profile for normal users
-    if (user.role === "patient") {
-      await Patient.create({
-        userId: user._id,
-        name: user.name,
-        email: user.email,
-        createdBy: user._id,
-      });
-    }
-
-    return res.status(201).json({
-      message: "Registered successfully",
+    // Auto-create linked patient profile
+    await Patient.create({
+      userId: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      age: user.age,
+      gender: user.gender,
+      bloodGroup: user.bloodGroup,
+      createdBy: user._id,
     });
+
+    throw new ApiError(201,"Registered successfully");
 
   } catch (err) {
     console.error("Register error:", err);
-    return res.status(500).json({
-      message: "Server error",
-      error: err.message,
-    });
+    throw new ApiError(500,"Server error",err);
   }
 };
 
 
-// Login handler
+//  Login 
+
 exports.login = async (req, res) => {
   try {
-    // Validate request body
     const { error, value } = loginSchema.validate(req.body, {
       abortEarly: false,
       stripUnknown: true,
     });
 
     if (error) {
-      const errors = error.details.map((detail) => detail.message);
-      return res.status(400).json({
-        message: "Validation failed",
-        errors: errors,
-      });
+      throw new ApiError(400,"Validation failed",error);
     }
 
     const { email, password } = value;
 
     // Find user
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
     if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      throw new ApiError(400,"Invalid credentials");
     }
 
     // Verify password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      throw new ApiError(400,"Invalid credentials");
     }
 
     // Generate JWT token
@@ -197,13 +101,13 @@ exports.login = async (req, res) => {
     // Set HTTP-only cookie
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Use secure in production
+      secure: process.env.NODE_ENV === "production",
       sameSite: "Lax",
       path: "/",
-      maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
 
-    res.json({
+    return res.json({
       token,
       role: user.role,
       user: {
@@ -212,13 +116,14 @@ exports.login = async (req, res) => {
         email: user.email,
       },
     });
+
   } catch (err) {
-    console.error("Login error:", err);
-    res.status(500).json({ message: "Server error" });
+    throw new ApiError(500,"Login failed",err);
   }
 };
 
-// Logout handler (optional but recommended)
+//  Logout
+
 exports.logout = (req, res) => {
   try {
     res.clearCookie("token", {
@@ -228,9 +133,9 @@ exports.logout = (req, res) => {
       path: "/",
     });
 
-    res.json({ message: "Logged out successfully" });
+    return res.json({ message: "Logged out successfully" });
+
   } catch (err) {
-    console.error("Logout error:", err);
-    res.status(500).json({ message: "Server error" });
+      throw new ApiError(500,"Logout failed",err);
   }
 };

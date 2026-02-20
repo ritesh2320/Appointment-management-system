@@ -11,13 +11,9 @@ const {
   getPatientStats,
 } = require("../controllers/patientController");
 const {
-  createPatientSchema,
-  updatePatientSchema,
-  patientIdSchema,
-  queryPatientSchema,
-} = require("../validations/patientValidation");
-const validate = require("../middleware/validate");
-const { authenticate, authorizeAdmin } = require("../middleware/authMiddleware");
+  authenticate,
+  authorizeAdmin,
+} = require("../middleware/authMiddleware");
 
 /**
  * All routes require authentication and admin authorization
@@ -31,43 +27,28 @@ router.use(authorizeAdmin);
  * @desc    Get patient statistics
  * @access  Admin
  */
-router.get(
-  "/stats",
-  getPatientStats
-);
+router.get("/stats", getPatientStats);
 
 /**
  * @route   GET /api/patients
  * @desc    Get all patients with pagination and filters
  * @access  Admin
  */
-router.get(
-  "/",
-  validate(queryPatientSchema, "query"),
-  getAllPatients
-);
+router.get("/", getAllPatients);
 
 /**
  * @route   POST /api/patients
  * @desc    Create new patient
  * @access  Admin
  */
-router.post(
-  "/",
-  validate(createPatientSchema, "body"),
-  createPatient
-);
+router.post("/", createPatient);
 
 /**
  * @route   GET /api/patients/:patientId
  * @desc    Get single patient by ID
  * @access  Admin
  */
-router.get(
-  "/:patientId",
-  validate(patientIdSchema, "params"),
-  getPatientById
-);
+router.get("/:patientId", getPatientById);
 
 /**
  * @route   PUT /api/patients/:patientId
@@ -76,9 +57,7 @@ router.get(
  */
 router.put(
   "/:patientId",
-  validate(patientIdSchema, "params"),
-  validate(updatePatientSchema, "body"),
-  updatePatient
+  updatePatient,
 );
 
 /**
@@ -88,8 +67,7 @@ router.put(
  */
 router.delete(
   "/:patientId",
-  validate(patientIdSchema, "params"),
-  deletePatient
+  deletePatient,
 );
 
 /**
@@ -99,8 +77,7 @@ router.delete(
  */
 router.delete(
   "/:patientId/permanent",
-  validate(patientIdSchema, "params"),
-  permanentDeletePatient
+  permanentDeletePatient,
 );
 
 /**
@@ -110,8 +87,7 @@ router.delete(
  */
 router.patch(
   "/:patientId/restore",
-  validate(patientIdSchema, "params"),
-  restorePatient
+  restorePatient,
 );
 
 module.exports = router;

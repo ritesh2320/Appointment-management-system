@@ -3,7 +3,6 @@ const router = express.Router();
 const {
   authenticate,
   authorizeAdmin,
-  authorizeRoles,
 } = require("../middleware/authMiddleware");
 const {
   createBooking,
@@ -13,18 +12,17 @@ const {
   cancelBooking,
   getBookingsBySlot,
   getBookingStats,
-  getBookingsBySlotAggregation
+  getBookingsBySlotAggregation,
+  getPatientBookings,
+  cancelAllPatientBookings
 } = require("../controllers/bookingController");
-const bookingController = require("../controllers/bookingController");
-const validate = require("../middleware/validate");
-const { bookingSchemas } = require("../validations/schemas");
+
 
 // Create booking - requires auth + patient + validation
 router.post(
   "/",
   authenticate,
-  validate(bookingSchemas.create),
-  bookingController.createBooking,
+  createBooking,
 );
 
 // Create admin booking - requires auth + admin
@@ -45,7 +43,6 @@ router.get(
 router.delete(
   "/cancel-booking/:bookingId",
   authenticate,
-  validate(bookingSchemas.cancel, "params"),
   cancelBooking,
 );
 
@@ -65,13 +62,13 @@ router.get("/slot-agg/:slotId", authenticate, authorizeAdmin, getBookingsBySlotA
  * @desc    Get all bookings for a specific patient
  * @access  Private/Admin
  */
-router.get("/patient/:patientId", authenticate, authorizeAdmin, bookingController.getPatientBookings);
+router.get("/patient/:patientId", authenticate, authorizeAdmin, getPatientBookings);
 
 /**
  * @route   DELETE /api/bookings/patient/:patientId/cancel-all
  * @desc    Cancel all future bookings for a patient 
  * @access  Private/Admin
  */
-router.delete("/patient/:patientId/cancel-all", authenticate, authorizeAdmin, bookingController.cancelAllPatientBookings);
+router.delete("/patient/:patientId/cancel-all", authenticate, authorizeAdmin, cancelAllPatientBookings);
 
 module.exports = router;

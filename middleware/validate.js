@@ -16,6 +16,7 @@ const validate = (schema, source = "body") => {
     const { error, value } = schema.validate(dataToValidate, {
       abortEarly: false, // Return all errors, not just the first one
       stripUnknown: true, // Remove unknown fields
+      convert: true,
     });
 
     if (error) {

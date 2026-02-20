@@ -229,9 +229,55 @@ const queryPatientSchema = Joi.object({
   maxAge: Joi.number().integer().min(1).max(150).optional(),
 });
 
+const getAllPatientsQuerySchema = Joi.object({
+  page: Joi.number().integer().min(1).default(1).messages({
+    "number.base": "Page must be a number",
+    "number.min": "Page must be at least 1",
+    "number.integer": "Page must be a whole number",
+  }),
+
+  limit: Joi.number().integer().min(1).max(100).default(10).messages({
+    "number.base": "Limit must be a number",
+    "number.min": "Limit must be at least 1",
+    "number.max": "Limit cannot exceed 100",
+    "number.integer": "Limit must be a whole number",
+  }),
+
+  search: Joi.string().trim().max(100).optional().allow("").messages({
+    "string.max": "Search term cannot exceed 100 characters",
+  }),
+
+  gender: Joi.string().valid("Male", "Female", "Other").optional().messages({
+    "any.only": "Gender must be Male, Female, or Other",
+  }),
+
+  bloodGroup: Joi.string()
+    .valid("A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-")
+    .optional()
+    .messages({
+      "any.only": "Invalid blood group",
+    }),
+
+  isActive: Joi.string().valid("true", "false").optional().messages({
+    "any.only": "isActive must be 'true' or 'false'",
+  }),
+
+  sortBy: Joi.string()
+    .valid("name", "email", "createdAt", "age", "updatedAt")
+    .default("createdAt")
+    .messages({
+      "any.only": "Invalid sort field",
+    }),
+
+  sortOrder: Joi.string().valid("asc", "desc").default("desc").messages({
+    "any.only": "Sort order must be 'asc' or 'desc'",
+  }),
+});
+
 module.exports = {
   createPatientSchema,
   updatePatientSchema,
   patientIdSchema,
   queryPatientSchema,
+  getAllPatientsQuerySchema,
 };

@@ -1,9 +1,10 @@
 const Booking = require("../models/booking");
 const Slot = require("../models/slot");
 const Payment = require("../models/payment");
+const User = require("../models/user");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
-const Joi = require("joi");
+const { createPaymentIntentSchema, verifyPaymentSchema } = require("../validations/paymentValidations");
 
 // Initialize Razorpay
 const razorpay = new Razorpay({
@@ -11,38 +12,20 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-// Validation schemas
-const createPaymentIntentSchema = Joi.object({
-  slotId: Joi.string()
-    .pattern(/^[0-9a-fA-F]{24}$/)
-    .required()
-    .messages({
-      "string.pattern.base": "Invalid slot ID format",
-      "any.required": "Slot ID is required",
-    }),
-  paymentMethod: Joi.string().valid("razorpay").default("razorpay").messages({
-    "any.only": "Payment method must be 'razorpay'",
-  }),
-});
 
-const verifyPaymentSchema = Joi.object({
-  paymentIntentId: Joi.string().required().messages({
-    "any.required": "Payment intent ID is required",
-  }),
-  paymentMethod: Joi.string().valid("razorpay").required().messages({
-    "any.required": "Payment method is required",
-  }),
-  // For Razorpay signature verification
-  razorpay_order_id: Joi.string().required().messages({
-    "any.required": "Razorpay order ID is required",
-  }),
-  razorpay_payment_id: Joi.string().required().messages({
-    "any.required": "Razorpay payment ID is required",
-  }),
-  razorpay_signature: Joi.string().required().messages({
-    "any.required": "Razorpay signature is required",
-  }),
-});
+// Auto-refund helper — used when slot becomes unavailable after successful payment
+const processAutoRefund = async (razorpayPaymentId, amount, reason) => {
+  try {
+    const refund = await razorpay.payments.refund(razorpayPaymentId, { amount });
+    console.log(`Auto-refund processed for ${razorpayPaymentId}: ${reason}`, refund.id);
+    return refund;
+  } catch (err) {
+    console.error(`Auto-refund FAILED for ${razorpayPaymentId}:`, err.message);
+    return null;
+  }
+};
+
+
 
 // ========================================
 // CREATE PAYMENT INTENT (RAZORPAY)
@@ -51,8 +34,8 @@ const verifyPaymentSchema = Joi.object({
 exports.createPaymentIntent = async (req, res) => {
   try {
     // Only users can make payments
-    if (req.user.role !== "user") {
-      return res.status(403).json({ message: "users only" });
+    if (req.user.role !== "patient") {
+      return res.status(403).json({ message: "patients only" });
     }
 
     // Validate request
@@ -73,6 +56,9 @@ exports.createPaymentIntent = async (req, res) => {
 
     // Verify slot exists and is available
     const slot = await Slot.findById(slotId);
+    const user = await User.findById(req.user.id);
+    // console.log("slot====",slot);
+    // console.log("user====",user);
 
     if (!slot || !slot.isActive) {
       return res.status(400).json({ message: "Slot unavailable" });
@@ -103,15 +89,17 @@ exports.createPaymentIntent = async (req, res) => {
     const options = {
       amount: amount, // Amount in paise
       currency: currency,
-      receipt: `receipt_${Date.now()}`,
+      receipt: `rcpt_${req.user.id}_${Date.now()}`.substring(0, 40), // max 40 chars
       notes: {
         userId: req.user.id,
         slotId: slotId,
-        userName: req.user.name || "Unknown",
+        userName: user.name || "Unknown",
         slotDate: slot.date.toISOString(),
         slotTime: `${slot.startTime} - ${slot.endTime}`,
       },
     };
+
+    // console.log("options====",options);
 
     const razorpayOrder = await razorpay.orders.create(options);
 
@@ -201,19 +189,28 @@ exports.verifyPayment = async (req, res) => {
     const slot = await Slot.findById(payment.slotId);
 
     if (!slot || !slot.isActive) {
-      // Payment succeeded but slot is now unavailable
-      // IMPORTANT: Consider implementing auto-refund here
+      // Slot gone — auto-refund
+      if (payment.razorpayPaymentId) {
+        await processAutoRefund(payment.razorpayPaymentId, payment.amount, "Slot unavailable after payment");
+        payment.refundStatus = "refunded";
+        payment.refundedAt = new Date();
+        await payment.save();
+      }
       return res.status(400).json({
-        message:
-          "Slot unavailable. Payment succeeded. Contact support for refund.",
+        message: "Slot is no longer available. Your payment has been refunded automatically.",
       });
     }
 
     if (slot.bookedSeats >= slot.maxSeats) {
-      // Slot became full after payment
-      // IMPORTANT: Consider implementing auto-refund here
+      // Slot full — auto-refund
+      if (payment.razorpayPaymentId) {
+        await processAutoRefund(payment.razorpayPaymentId, payment.amount, "Slot full after payment");
+        payment.refundStatus = "refunded";
+        payment.refundedAt = new Date();
+        await payment.save();
+      }
       return res.status(400).json({
-        message: "Slot full. Payment succeeded. Contact support for refund.",
+        message: "Slot is now fully booked. Your payment has been refunded automatically.",
       });
     }
 
@@ -304,7 +301,7 @@ exports.getPaymentStatus = async (req, res) => {
 
 exports.getMyPayments = async (req, res) => {
   try {
-    if (req.user.role !== "user") {
+    if (req.user.role !== "patient") {
       return res.status(403).json({ message: "users only" });
     }
 
@@ -426,3 +423,5 @@ exports.refundPayment = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
+
+module.exports = exports;
